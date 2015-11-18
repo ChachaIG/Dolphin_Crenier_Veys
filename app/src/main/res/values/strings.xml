@@ -12,11 +12,11 @@
     <string name="recherche">Recherche</string>
     <string name="tot">Totaux</string>
     <string name="stat">Statistiques</string>
-    <string name="ajoutMatch">Ajouter un bonbon</string>
-    <string name="suppMatch">Supprimer un bonbon</string>
+    <string name="ajoutMatch">Ajouter un match</string>
+    <string name="suppMatch">Supprimer un match</string>
     <string name="km">Kilomètre</string>
     <string name="salaire">Salaire</string>
-    <string name="piscine">CACA BOUDIN</string>
+    <string name="piscine">Piscine</string>
     <string name="division">Division</string>
     <string name="title_activity_ajout">AjoutActivity</string>
     <string name="categorie">Categorie</string>
