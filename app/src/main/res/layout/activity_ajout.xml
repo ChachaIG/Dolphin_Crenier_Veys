@@ -1,0 +1,116 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.henallux.dolphin_crenier_veys.AjoutActivity">
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ajoutMatch"
+            android:id="@+id/textLabel"
+            android:background="#ff6e19"
+            android:textColor="#ffffff"
+            android:textSize="22dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/scrollView"
+            android:layout_alignEnd="@+id/scrollView" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView2">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:weightSum="1">
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/secondMatch"
+        android:id="@+id/textSecond"
+        android:textSize="18dp"
+        android:padding="20dp"
+        android:layout_below="@+id/textLabel"
+        android:layout_alignLeft="@+id/textLabel"
+        android:layout_alignStart="@+id/textLabel"
+        android:layout_alignRight="@+id/textLabel"
+        android:layout_alignEnd="@+id/textLabel"
+            android:layout_marginTop="68dp" />
+
+        <Switch
+     android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    android:id="@+id/switch1"
+            android:layout_alignRight="@+id/textLabel"
+    android:layout_alignEnd="@+id/textLabel"
+            android:layout_gravity="right"
+            android:layout_weight="0.33"
+            android:layout_marginTop="-50dp"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/categorie"
+    android:id="@+id/textCat"
+    android:textSize="18dp"
+    android:textStyle="bold"
+    android:background="#cdcdcd"
+    android:padding="20dp"
+    android:layout_below="@+id/textSecond"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignRight="@+id/textSecond"
+    android:layout_alignEnd="@+id/textSecond"
+            android:layout_marginTop="20dp" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:id="@+id/listView"
+            android:layout_below="@+id/textCat"
+            android:layout_alignLeft="@+id/textCat"
+            android:layout_alignStart="@+id/textCat" />
+
+        <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/date"
+    android:id="@+id/textDate"
+    android:textSize="18dp"
+    android:textStyle="bold"
+    android:background="#cdcdcd"
+    android:padding="20dp"
+
+    android:layout_below="@+id/textCat"
+    android:layout_alignLeft="@+id/listView"
+        android:layout_alignStart="@+id/listView"
+            android:layout_alignRight="@+id/listView"
+    android:layout_alignEnd="@+id/listView" />
+
+        <CalendarView
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:id="@+id/calendarView"
+    android:layout_below="@+id/textDate"
+    android:layout_alignLeft="@+id/textDate"
+    android:layout_alignStart="@+id/textDate"
+    android:layout_alignRight="@+id/textDate"
+    android:layout_alignEnd="@+id/textDate" />
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

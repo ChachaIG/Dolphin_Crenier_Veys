@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.henallux.dolphin_crenier_veys" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.ConnexionActivity"
+            android:label="@string/title_activity_connexion" >
+        </activity>
+        <activity
+            android:name=".view.MenuActivity"
+            android:label="@string/title_activity_menu" >
+        </activity>
+        <activity
+            android:name="AjoutActivity"
+            android:label="@string/title_activity_ajout" >
+        </activity>
+        <activity
+            android:name=".view.SuppActivity"
+            android:label="@string/title_activity_supp" >
+        </activity>
+        <activity
+            android:name=".RechActivity"
+            android:label="@string/title_activity_rech" >
+        </activity>
+        <activity
+            android:name=".TotKMActivity"
+            android:label="@string/title_activity_tot_km" >
+        </activity>
+        <activity
+            android:name=".TotSalActivity"
+            android:label="@string/title_activity_tot_sal" >
+        </activity>
+        <activity
+            android:name=".StatPiscineActivity"
+            android:label="@string/title_activity_stat_piscine" >
+        </activity>
+        <activity
+            android:name=".StatDivisionActivity"
+            android:label="@string/title_activity_stat_division" >
+        </activity>
+    </application>
+
+</manifest>

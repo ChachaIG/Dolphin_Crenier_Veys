@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"> Dolphin</string>
+    <string name="title_activity_connexion">connexion</string>
+    <string name="title_activity_menu">menu</string>
+    <string name="connexion">Connexion</string>
+    <string name="welcomeMess">Bienvenue</string>
+    <string name="action_settings">Paramêtres</string>
+    <string name="loginInput">Nom utilisteur</string>
+    <string name="passwordInput">Mot de passe</string>
+    <string name="gestionMatch">Gestion match</string>
+    <string name="recherche">Recherche</string>
+    <string name="tot">Totaux</string>
+    <string name="stat">Statistiques</string>
+    <string name="ajoutMatch">Ajouter un match</string>
+    <string name="suppMatch">Supprimer un match</string>
+    <string name="km">Kilomètre</string>
+    <string name="salaire">Salaire</string>
+    <string name="piscine">Piscine</string>
+    <string name="division">Division</string>
+    <string name="title_activity_ajout">AjoutActivity</string>
+    <string name="categorie">Categorie</string>
+    <string name="secondMatch">Second match</string>
+    <string name="title_activity_supp">SuppActivity</string>
+    <string name="title_activity_rech">RechActivity</string>
+    <string name="title_activity_tot_km">TotKMActivity</string>
+    <string name="title_activity_tot_sal">TotSalActivity</string>
+    <string name="title_activity_stat_piscine">StatPiscineActivity</string>
+    <string name="title_activity_stat_division">StatDivisionActivity</string>
+    <string name="date">Date</string>
+</resources>
