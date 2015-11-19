@@ -28,4 +28,6 @@
     <string name="categorie">Category</string>
     <string name="date">Date</string>
     <string name="indiceDate">Enter a date</string>
+    <string name="lieu">Place</string>
+    <string name="ajoutButt">Add</string>
 </resources>

@@ -29,4 +29,6 @@
     <string name="title_activity_stat_division">StatDivisionActivity</string>
     <string name="date">Date</string>
     <string name="indiceDate">Entrer une date</string>
+    <string name="lieu">Lieu</string>
+    <string name="ajoutButt">Ajouter</string>
 </resources>
