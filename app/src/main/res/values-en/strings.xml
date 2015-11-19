@@ -27,4 +27,5 @@
     <string name="secondMatch">Second match</string>
     <string name="categorie">Category</string>
     <string name="date">Date</string>
+    <string name="indiceDate">Enter a date</string>
 </resources>

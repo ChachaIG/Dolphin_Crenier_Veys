@@ -28,4 +28,5 @@
     <string name="title_activity_stat_piscine">StatPiscineActivity</string>
     <string name="title_activity_stat_division">StatDivisionActivity</string>
     <string name="date">Date</string>
+    <string name="indiceDate">Entrer une date</string>
 </resources>

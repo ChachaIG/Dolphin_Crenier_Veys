@@ -1,19 +1,53 @@
 package com.henallux.dolphin_crenier_veys;
 
+import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import com.henallux.dolphin_crenier_veys.R;
 
-public class AjoutActivity extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+public class AjoutActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private TextView recupDate;
+    private SimpleDateFormat dateFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout);
+        init();
     }
+
+    public void init(){
+        recupDate = (TextView)findViewById(R.id.recupDate);
+        recupDate.setHint(R.string.indiceDate);
+        recupDate.setOnClickListener(this);
+    }
+
+    public void onClick(View v){
+        DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                recupDate.setText(dateFormatter.format(newDate.getTime()));
+            }
+        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        dialog.show();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

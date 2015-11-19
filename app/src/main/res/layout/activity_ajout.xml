@@ -100,17 +100,21 @@
             android:layout_alignRight="@+id/listView"
     android:layout_alignEnd="@+id/listView" />
 
-        <CalendarView
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:id="@+id/calendarView"
-    android:layout_below="@+id/textDate"
-    android:layout_alignLeft="@+id/textDate"
-    android:layout_alignStart="@+id/textDate"
-    android:layout_alignRight="@+id/textDate"
-    android:layout_alignEnd="@+id/textDate" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/recupDate"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="145dp"
+            android:layout_weight="0.20"
+            android:padding="15dp" />
 
     </LinearLayout>
     </ScrollView>
+
+
 
 </RelativeLayout>
