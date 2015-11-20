@@ -30,4 +30,5 @@
     <string name="indiceDate">Enter a date</string>
     <string name="lieu">Place</string>
     <string name="ajoutButt">Add</string>
+    <string name="BonMatch">Good match !</string>
 </resources>
