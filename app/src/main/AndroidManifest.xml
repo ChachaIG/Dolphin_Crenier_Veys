@@ -56,6 +56,10 @@
             android:name=".view.ResAjoutActivity"
             android:label="@string/title_activity_res_ajout" >
         </activity>
+        <activity
+            android:name=".view.ListSuppActivity"
+            android:label="@string/title_activity_list_supp" >
+        </activity>
     </application>
 
 </manifest>

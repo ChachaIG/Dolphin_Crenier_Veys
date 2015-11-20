@@ -35,5 +35,10 @@
     <string name="BonMatch">Bon match !</string>
     <string name="dateDeb">Date début</string>
     <string name="dateFin">Date Fin</string>
+    <string name="VoirMatchs"> Voir matchs</string>
+    <string name="title_activity_list_supp">ListSuppActivity</string>
+    <string name="buttonSupp">Supprimer</string>
+
+
 
 </resources>

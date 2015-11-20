@@ -33,4 +33,5 @@
     <string name="BonMatch">Good match !</string>
     <string name="dateDeb">Start date</string>
     <string name="dateFin">End date</string>
+    <string name="buttonSupp">Delete</string>
 </resources>

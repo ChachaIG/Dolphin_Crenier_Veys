@@ -40,39 +40,42 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v){
-        DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        if(v.getId()==R.id.recupDateDeb) {
+            DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                dateFormatterDeb = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                    dateFormatterDeb = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-                Calendar newDateDeb = Calendar.getInstance();
+                    Calendar newDateDeb = Calendar.getInstance();
 
-                newDateDeb.set(year, monthOfYear, dayOfMonth);
+                    newDateDeb.set(year, monthOfYear, dayOfMonth);
 
-                recupDateDeb.setText(dateFormatterDeb.format(newDateDeb.getTime()));
+                    recupDateDeb.setText(dateFormatterDeb.format(newDateDeb.getTime()));
 
-            }
-        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        dialog.show();
+                }
+            }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+            dialog.show();
+        }
 
-        DatePickerDialog dialogFin = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        if(v.getId()==R.id.recupDateFin) {
+            DatePickerDialog dialogFin = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
 
-                dateFormatterFin = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                    dateFormatterFin = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-                Calendar newDateFin = Calendar.getInstance();
+                    Calendar newDateFin = Calendar.getInstance();
 
-                newDateFin.set(year, monthOfYear, dayOfMonth);
-             
-                recupDateFin.setText(dateFormatterFin.format(newDateFin.getTime()));
-            }
-        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+                    newDateFin.set(year, monthOfYear, dayOfMonth);
 
-        dialogFin.show();
+                    recupDateFin.setText(dateFormatterFin.format(newDateFin.getTime()));
+                }
+            }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
+            dialogFin.show();
+        }
 
     }
 
