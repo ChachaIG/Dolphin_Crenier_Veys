@@ -33,6 +33,7 @@
     <string name="ajoutButt">Ajouter</string>
     <string name="title_activity_res_ajout">ResAjoutActivity</string>
     <string name="BonMatch">Bon match !</string>
-
+    <string name="dateDeb">Date début</string>
+    <string name="dateFin">Date Fin</string>
 
 </resources>
