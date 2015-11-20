@@ -52,6 +52,10 @@
             android:name=".view.StatDivisionActivity"
             android:label="@string/title_activity_stat_division" >
         </activity>
+        <activity
+            android:name=".view.ResAjoutActivity"
+            android:label="@string/title_activity_res_ajout" >
+        </activity>
     </application>
 
 </manifest>

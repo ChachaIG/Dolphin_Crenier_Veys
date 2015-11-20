@@ -137,6 +137,7 @@
             android:layout_alignStart="@+id/textCat" />
 
         <Button
+            android:id="@+id/addMatchButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/ajoutButt"

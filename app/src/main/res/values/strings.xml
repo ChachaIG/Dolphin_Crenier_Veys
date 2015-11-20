@@ -31,4 +31,7 @@
     <string name="indiceDate">Entrer une date</string>
     <string name="lieu">Lieu</string>
     <string name="ajoutButt">Ajouter</string>
+    <string name="title_activity_res_ajout">ResAjoutActivity</string>
+
+
 </resources>

@@ -1,11 +1,13 @@
 package com.henallux.dolphin_crenier_veys.view;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
 
     private TextView recupDate;
     private SimpleDateFormat dateFormatter;
+    private Button ajoutBout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         recupDate = (TextView)findViewById(R.id.recupDate);
         recupDate.setHint(R.string.indiceDate);
         recupDate.setOnClickListener(this);
+        ajoutBout = (Button)findViewById(R.id.addMatchButton);
+        ajoutBout.setOnClickListener(this);
 
     }
 
@@ -46,6 +51,11 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
             }
         }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         dialog.show();
+
+        switch(v.getId()){
+            case R.id.addMatchButton:
+                startActivity(new Intent(AjoutActivity.this,ResAjoutActivity.class));
+        }
     }
 
 
