@@ -10,12 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import com.henallux.dolphin_crenier_veys.R;
-import com.henallux.dolphin_crenier_veys.AjoutActivity;
-import com.henallux.dolphin_crenier_veys.RechActivity;
-import com.henallux.dolphin_crenier_veys.StatDivisionActivity;
-import com.henallux.dolphin_crenier_veys.StatPiscineActivity;
-import com.henallux.dolphin_crenier_veys.TotKMActivity;
-import com.henallux.dolphin_crenier_veys.TotSalActivity;
 
 import android.widget.ExpandableListView;
 

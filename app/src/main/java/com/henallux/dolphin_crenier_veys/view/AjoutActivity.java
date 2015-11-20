@@ -1,4 +1,4 @@
-package com.henallux.dolphin_crenier_veys;
+package com.henallux.dolphin_crenier_veys.view;
 
 import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +31,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         recupDate = (TextView)findViewById(R.id.recupDate);
         recupDate.setHint(R.string.indiceDate);
         recupDate.setOnClickListener(this);
+
     }
 
     public void onClick(View v){

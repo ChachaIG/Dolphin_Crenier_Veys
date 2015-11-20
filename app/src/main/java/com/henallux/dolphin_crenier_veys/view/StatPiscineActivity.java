@@ -1,22 +1,24 @@
-package com.henallux.dolphin_crenier_veys;
+package com.henallux.dolphin_crenier_veys.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class TotSalActivity extends AppCompatActivity {
+import com.henallux.dolphin_crenier_veys.R;
+
+public class StatPiscineActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tot_sal);
+        setContentView(R.layout.activity_stat_piscine);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tot_sal, menu);
+        getMenuInflater().inflate(R.menu.menu_stat_piscine, menu);
         return true;
     }
 
