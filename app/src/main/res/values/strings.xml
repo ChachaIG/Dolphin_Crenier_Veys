@@ -38,6 +38,9 @@
     <string name="VoirMatchs"> Voir matchs</string>
     <string name="title_activity_list_supp">ListSuppActivity</string>
     <string name="buttonSupp">Supprimer</string>
+    <string name="title_activity_res_rech">ResRechActivity</string>
+
+
 
 
 

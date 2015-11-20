@@ -39,25 +39,28 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public void onClick(View v){
-        DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+    public void onClick(View v) {
+        if (v.getId() == R.id.recupDate) {
+            DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-                Calendar newDate = Calendar.getInstance();
-                newDate.set(year, monthOfYear, dayOfMonth);
-                recupDate.setText(dateFormatter.format(newDate.getTime()));
-            }
-        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        dialog.show();
+                    dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                    Calendar newDate = Calendar.getInstance();
+                    newDate.set(year, monthOfYear, dayOfMonth);
+                    recupDate.setText(dateFormatter.format(newDate.getTime()));
+                }
+            }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+            dialog.show();
 
-        switch(v.getId()){
+
+        }
+
+        switch (v.getId()) {
             case R.id.addMatchButton:
-                startActivity(new Intent(AjoutActivity.this,ResAjoutActivity.class));
+                startActivity(new Intent(AjoutActivity.this, ResAjoutActivity.class));
         }
     }
-
 
 
     @Override

@@ -60,6 +60,10 @@
             android:name=".view.ListSuppActivity"
             android:label="@string/title_activity_list_supp" >
         </activity>
+        <activity
+            android:name=".view.ResRechActivity"
+            android:label="@string/title_activity_res_rech" >
+        </activity>
     </application>
 
 </manifest>

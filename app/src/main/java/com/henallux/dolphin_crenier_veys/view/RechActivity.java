@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
     private TextView recupDateFin;
     private SimpleDateFormat dateFormatterDeb;
     private SimpleDateFormat dateFormatterFin;
+    private Button rechButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
         recupDateFin = (TextView)findViewById(R.id.recupDateFin);
         recupDateFin.setHint(R.string.indiceDate);
         recupDateFin.setOnClickListener(this);
+        rechButton = (Button)findViewById(R.id.buttonRech);
+        rechButton.setOnClickListener(this);
     }
 
     public void onClick(View v){
@@ -75,6 +79,10 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
             dialogFin.show();
+        }
+
+        if(v.getId()==R.id.buttonRech){
+            startActivity(new Intent(RechActivity.this, ResRechActivity.class));
         }
 
     }
