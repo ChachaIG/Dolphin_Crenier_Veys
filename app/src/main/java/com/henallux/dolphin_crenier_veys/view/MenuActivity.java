@@ -35,43 +35,50 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         prepareListData();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
-        expListView.setOnChildClickListener( new ExpandableListView.OnChildClickListener(){
-            public boolean onChildClick(ExpandableListView parent, View v,int groupPosition, int childPosition, long id) {
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 if (groupPosition == 0) {
                     switch (childPosition) {
                         case 0:
-                            startActivity(new Intent(MenuActivity.this,AjoutActivity.class));
+                            startActivity(new Intent(MenuActivity.this, AjoutActivity.class));
                             break;
                         case 1:
                             startActivity(new Intent(MenuActivity.this, SuppActivity.class));
                             break;
                     }
                 } else {
-                    if (groupPosition == 1)
-                        startActivity(new Intent(MenuActivity.this, RechActivity.class));
-                    else {
-                        if (groupPosition == 2) {
-                            switch (childPosition) {
-                                case 0:
-                                    startActivity(new Intent(MenuActivity.this, TotKMActivity.class));
-                                    break;
-                                case 1:
-                                    startActivity(new Intent(MenuActivity.this, TotSalActivity.class));
-                                    break;
-                            }
-                        } else {
-                            switch (childPosition) {
-                                case 0:
-                                    startActivity(new Intent(MenuActivity.this, StatPiscineActivity.class));
-                                    break;
-                                case 1:
-                                    startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
-                                    break;
-                            }
+                    if (groupPosition == 2) {
+                        switch (childPosition) {
+                            case 0:
+                                startActivity(new Intent(MenuActivity.this, TotKMActivity.class));
+                                break;
+                            case 1:
+                                startActivity(new Intent(MenuActivity.this, TotSalActivity.class));
+                                break;
                         }
-
+                    } else {
+                        switch (childPosition) {
+                            case 0:
+                                startActivity(new Intent(MenuActivity.this, StatPiscineActivity.class));
+                                break;
+                            case 1:
+                                startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
+                                break;
+                        }
                     }
 
+                }
+
+                return false;
+
+            }
+        });
+
+        expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                if(groupPosition == 1){
+                    startActivity(new Intent(MenuActivity.this, RechActivity.class));
                 }
                 return false;
             }
