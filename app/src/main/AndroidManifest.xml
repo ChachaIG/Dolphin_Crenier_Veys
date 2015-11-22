@@ -64,6 +64,18 @@
             android:name=".view.ResRechActivity"
             android:label="@string/title_activity_res_rech" >
         </activity>
+        <activity
+            android:name=".view.ListRechActivity"
+            android:label="@string/title_activity_list_rech" >
+        </activity>
+        <activity
+            android:name=".view.ResTotKMActivity"
+            android:label="@string/title_activity_res_tot_km" >
+        </activity>
+        <activity
+            android:name=".view.ResTotSalActivity"
+            android:label="@string/title_activity_res_tot_sal" >
+        </activity>
     </application>
 
 </manifest>

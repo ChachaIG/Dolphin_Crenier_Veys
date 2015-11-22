@@ -39,7 +39,18 @@
     <string name="title_activity_list_supp">ListSuppActivity</string>
     <string name="buttonSupp">Supprimer</string>
     <string name="title_activity_res_rech">ResRechActivity</string>
-
+    <string name="txtRes1">Pour aller jusque la piscne de</string>
+    <string name="txtRes2">tu devras parcourir</string>
+    <string name="txtRes3">et tu pourras percevoir</string>
+    <string name="title_activity_list_rech">ListRechActivity</string>
+    <string name="annee">Année</string>
+    <string name="mois">Mois</string>
+    <string name="saison">Saison</string>
+    <string name="totKMLabel">Totaux : Kilomètre</string>
+    <string name="title_activity_res_tot_km">ResTotKMActivity</string>
+    <string name="title_activity_res_tot_sal">ResTotSalActivity</string>
+    <string name="totSalLabel">Totaux : Salaire</string>
+    <string name="totButt">Total</string>
 
 
 

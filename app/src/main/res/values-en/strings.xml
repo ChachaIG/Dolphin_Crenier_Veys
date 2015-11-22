@@ -34,4 +34,11 @@
     <string name="dateDeb">Start date</string>
     <string name="dateFin">End date</string>
     <string name="buttonSupp">Delete</string>
+    <string name="txtRes1">To go to the swimming pool in</string>
+    <string name="txtRes2">you will travel</string>
+    <string name="txtRes3">and you could earn</string>
+    <string name="annee">Year</string>
+    <string name="mois">Month</string>
+    <string name="saison">Season</string>
+    <string name="totKMLabel">Totals : Kilometer</string>
 </resources>

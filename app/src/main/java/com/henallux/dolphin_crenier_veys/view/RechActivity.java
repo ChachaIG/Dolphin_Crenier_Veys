@@ -82,7 +82,7 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if(v.getId()==R.id.buttonRech){
-            startActivity(new Intent(RechActivity.this, ResRechActivity.class));
+            startActivity(new Intent(RechActivity.this, ListRechActivity.class));
         }
 
     }
