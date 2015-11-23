@@ -53,4 +53,5 @@
     <string name="totButt">Total</string>
     <string name="title_activity_res_stat_division">ResStatDivisionActivity</string>
     <string name="title_activity_res_stat_piscine">ResStatPiscineActivity</string>
+    <string name="verifDateAjout">Date invalide</string>
 </resources>

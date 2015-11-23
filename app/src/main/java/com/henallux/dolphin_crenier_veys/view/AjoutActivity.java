@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.henallux.dolphin_crenier_veys.R;
 
@@ -22,6 +23,11 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
     private TextView recupDate;
     private SimpleDateFormat dateFormatter;
     private Button ajoutBout;
+    private Calendar newDate;
+    private Calendar currentDate = Calendar.getInstance();
+    long timeNewDate;
+    long timeCurrent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,17 +47,27 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
 
     public void onClick(View v) {
         if (v.getId() == R.id.recupDate) {
-            DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                    dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-                    Calendar newDate = Calendar.getInstance();
-                    newDate.set(year, monthOfYear, dayOfMonth);
-                    recupDate.setText(dateFormatter.format(newDate.getTime()));
-                }
-            }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-            dialog.show();
+                DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                        currentDate.set(currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DAY_OF_MONTH));
+                        timeCurrent = currentDate.getTimeInMillis();
+                        dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                        newDate = Calendar.getInstance();
+                        newDate.set(year, monthOfYear, dayOfMonth);
+                        timeNewDate = newDate.getTimeInMillis();
+                        if(timeNewDate > timeCurrent)
+                            recupDate.setText(dateFormatter.format(newDate.getTime()));
+                        else
+                            Toast.makeText(AjoutActivity.this, R.string.verifDateAjout, Toast.LENGTH_LONG).show();
+                    }
+                }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+
+                dialog.show();
+
+
 
 
         }

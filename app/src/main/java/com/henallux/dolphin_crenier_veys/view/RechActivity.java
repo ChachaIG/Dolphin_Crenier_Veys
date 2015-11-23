@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.henallux.dolphin_crenier_veys.R;
 
@@ -24,6 +25,10 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
     private SimpleDateFormat dateFormatterDeb;
     private SimpleDateFormat dateFormatterFin;
     private Button rechButton;
+    private Calendar newDateDeb;
+    private long timeDateDeb;
+    private Calendar newDateFin;
+    private long timeDateFin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,7 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
 
                     dateFormatterDeb = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-                    Calendar newDateDeb = Calendar.getInstance();
+                    newDateDeb = Calendar.getInstance();
 
                     newDateDeb.set(year, monthOfYear, dayOfMonth);
 
@@ -70,11 +75,17 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
 
                     dateFormatterFin = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-                    Calendar newDateFin = Calendar.getInstance();
+                    newDateFin = Calendar.getInstance();
 
                     newDateFin.set(year, monthOfYear, dayOfMonth);
 
-                    recupDateFin.setText(dateFormatterFin.format(newDateFin.getTime()));
+                    timeDateDeb = newDateDeb.getTimeInMillis();
+                    timeDateFin =newDateFin.getTimeInMillis();
+
+                    if(timeDateFin > timeDateDeb)
+                        recupDateFin.setText(dateFormatterFin.format(newDateFin.getTime()));
+                    else
+                        Toast.makeText(RechActivity.this, R.string.verifDateAjout, Toast.LENGTH_LONG).show();
                 }
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
