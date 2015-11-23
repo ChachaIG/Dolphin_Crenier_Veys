@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.henallux.dolphin_crenier_veys.view.StatPiscineActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/stat"
+        android:id="@+id/textLabelStatPisc"
+        android:background="#0098ff"
+        android:textColor="#ffffff"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:padding="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/annee"
+        android:id="@+id/textAnnee"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:background="#cdcdcd"
+        android:padding="20dp"
+        android:layout_below="@id/textLabelStatPisc"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mois"
+        android:id="@+id/textMois"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:background="#cdcdcd"
+        android:padding="20dp"
+        android:layout_below="@id/textAnnee"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/saison"
+        android:id="@+id/textSaison"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:background="#cdcdcd"
+        android:padding="20dp"
+        android:layout_below="@id/textMois"/>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchAnnee"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="85dp"
+        android:layout_marginRight="20dp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchMois"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="145dp"
+        android:layout_marginRight="20dp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchSaison"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="205dp"
+        android:layout_marginRight="20dp" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/recupLaps"
+        android:layout_below="@+id/textSaison"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/totButt"
+        android:id="@+id/buttonTot"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="54dp" />
+
+</RelativeLayout>

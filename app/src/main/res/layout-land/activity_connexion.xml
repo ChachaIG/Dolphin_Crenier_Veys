@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:paddingTop="@dimen/activity_vertical_margin"
+
+    tools:context="com.henallux.dolphin_crenier_veys.view.ConnexionActivity"
+    android:background="#ffffff">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logoDolphin"
+        android:src="@drawable/logo"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginText"
+        android:layout_below="@+id/passwordText"
+        android:layout_alignLeft="@+id/passwordText"
+        android:layout_alignStart="@+id/passwordText"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="100dp" />
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:id="@+id/passwordText"
+        android:layout_marginRight="100dp"
+        android:layout_marginEnd="78dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="63dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connexion"
+        android:id="@+id/connexionButton"
+        android:layout_alignBottom="@+id/logoDolphin"
+        android:layout_alignLeft="@+id/loginText"
+        android:layout_alignStart="@+id/loginText"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="25dp" />
+</RelativeLayout>
