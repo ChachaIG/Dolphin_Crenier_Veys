@@ -51,8 +51,6 @@
     <string name="title_activity_res_tot_sal">ResTotSalActivity</string>
     <string name="totSalLabel">Totaux : Salaire</string>
     <string name="totButt">Total</string>
-
-
-
-
+    <string name="title_activity_res_stat_division">ResStatDivisionActivity</string>
+    <string name="title_activity_res_stat_piscine">ResStatPiscineActivity</string>
 </resources>

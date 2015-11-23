@@ -76,6 +76,14 @@
             android:name=".view.ResTotSalActivity"
             android:label="@string/title_activity_res_tot_sal" >
         </activity>
+        <activity
+            android:name=".view.ResStatDivisionActivity"
+            android:label="@string/title_activity_res_stat_division" >
+        </activity>
+        <activity
+            android:name=".view.ResStatPiscineActivity"
+            android:label="@string/title_activity_res_stat_piscine" >
+        </activity>
     </application>
 
 </manifest>

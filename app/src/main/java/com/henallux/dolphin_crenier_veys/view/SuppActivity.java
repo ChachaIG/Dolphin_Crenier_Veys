@@ -44,6 +44,8 @@ public class SuppActivity extends AppCompatActivity implements View.OnClickListe
         if(v.getId()==R.id.voirMatchButton){
             startActivity(new Intent(SuppActivity.this, ListSuppActivity.class));
         }
+
+        if(v.getId()==R.id.recupDateSupp){
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -54,7 +56,7 @@ public class SuppActivity extends AppCompatActivity implements View.OnClickListe
                 recupDate.setText(dateFormatter.format(newDate.getTime()));
             }
         }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        dialog.show();
+        dialog.show();}
 
     }
 
