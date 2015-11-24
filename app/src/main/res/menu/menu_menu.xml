@@ -2,6 +2,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.henallux.dolphin_crenier_veys.view.MenuActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+
+
+    <item android:id="@+id/ic_ajout"
+        android:title="@string/ajoutMatch"
+        app:showAsAction = "never" />
+    <item android:id="@+id/ic_supp"
+        android:title="@string/suppMatch"
+        app:showAsAction="never" />
+
+
+    <item android:id="@+id/ic_totKm"
+        android:title="@string/totKMLabel"
+        app:showAsAction="never"
+       />
+
+    <item android:id="@+id/ic_totSal"
+        android:title="@string/totSalLabel"
+        app:showAsAction="never"
+        />
+
+    <item android:id="@+id/ic_rech"
+        android:title="@string/recherche"
+        app:showAsAction="always"
+        android:icon="@drawable/iconerecherches"/>
+
+    <item android:id="@+id/ic_statDiv"
+        android:title="@string/division"
+        app:showAsAction="never"
+        />
+
+    <item android:id="@+id/ic_statPisc"
+        android:title="@string/piscine"
+        app:showAsAction="never"
+        />
 </menu>

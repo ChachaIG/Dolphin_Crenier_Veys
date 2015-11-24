@@ -109,7 +109,7 @@ public class StatDivisionActivity extends AppCompatActivity implements View.OnCl
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_stat_division, menu);
+        getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
@@ -118,12 +118,33 @@ public class StatDivisionActivity extends AppCompatActivity implements View.OnCl
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+
+            case R.id.ic_rech:
+                startActivity(new Intent(StatDivisionActivity.this, RechActivity.class));
+                return true;
+            case R.id.ic_ajout:
+                startActivity(new Intent(StatDivisionActivity.this, AjoutActivity.class));
+                return true;
+            case R.id.ic_statDiv:
+                startActivity(new Intent(StatDivisionActivity.this, StatDivisionActivity.class));
+                return true;
+            case R.id.ic_statPisc:
+                startActivity(new Intent(StatDivisionActivity.this, StatPiscineActivity.class));
+                return true;
+            case R.id.ic_supp:
+                startActivity(new Intent(StatDivisionActivity.this, SuppActivity.class));
+                return true;
+            case R.id.ic_totKm:
+                startActivity(new Intent(StatDivisionActivity.this, TotKMActivity.class));
+                return true;
+            case R.id.ic_totSal:
+                startActivity(new Intent(StatDivisionActivity.this, TotSalActivity.class));
+                return true;
+
         }
+
 
         return super.onOptionsItemSelected(item);
     }

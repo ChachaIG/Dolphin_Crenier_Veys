@@ -12,94 +12,90 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.ConnexionActivity"
-            android:label="@string/app_name"/>
-
-
+            android:label="@string/app_name" />
         <activity
             android:name=".view.MenuActivity"
-            android:label="@string/app_name"/>
-
-
+            android:label="@string/app_name" />
         <activity
             android:name=".view.AjoutActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.SuppActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.RechActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.TotKMActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.TotSalActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.StatPiscineActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.StatDivisionActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.ResAjoutActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.ListSuppActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.ResRechActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.ListRechActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.ResTotKMActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.ResTotSalActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.ResStatDivisionActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
             android:name=".view.ResStatPiscineActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity">
+            android:parentActivityName=".view.MenuActivity" >
         </activity>
     </application>
 

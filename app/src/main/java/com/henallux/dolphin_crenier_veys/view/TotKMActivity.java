@@ -114,7 +114,7 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tot_km, menu);
+        getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
@@ -123,12 +123,32 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.ic_rech:
+                startActivity(new Intent(TotKMActivity.this, RechActivity.class));
+                return true;
+            case R.id.ic_ajout:
+                startActivity(new Intent(TotKMActivity.this, AjoutActivity.class));
+                return true;
+            case R.id.ic_statDiv:
+                startActivity(new Intent(TotKMActivity.this, StatDivisionActivity.class));
+                return true;
+            case R.id.ic_statPisc:
+                startActivity(new Intent(TotKMActivity.this, StatPiscineActivity.class));
+                return true;
+            case R.id.ic_supp:
+                startActivity(new Intent(TotKMActivity.this, SuppActivity.class));
+                return true;
+            case R.id.ic_totKm:
+                startActivity(new Intent(TotKMActivity.this, TotKMActivity.class));
+                return true;
+            case R.id.ic_totSal:
+                startActivity(new Intent(TotKMActivity.this, TotSalActivity.class));
+                return true;
+
         }
+
 
         return super.onOptionsItemSelected(item);
     }

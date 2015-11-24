@@ -14,6 +14,7 @@ import com.henallux.dolphin_crenier_veys.R;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button welcomeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,15 +29,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
-    public void onClick(View v){
-        switch(v.getId()){
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.welcomeButton:
-                startActivity(new Intent(MainActivity.this,ConnexionActivity.class));
+                startActivity(new Intent(MainActivity.this, ConnexionActivity.class));
         }
     }
 
-    public void init(){
-        welcomeButton = (Button)this.findViewById(R.id.welcomeButton);
+    public void init() {
+        welcomeButton = (Button) this.findViewById(R.id.welcomeButton);
         welcomeButton.setOnClickListener(this);
 
     }
@@ -46,13 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
+
     }
+
 }

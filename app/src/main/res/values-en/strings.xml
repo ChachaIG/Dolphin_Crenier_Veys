@@ -36,4 +36,5 @@
     <string name="totSalLabel">Totals : Salary</string>
     <string name="totButt">Total</string>
     <string name="verifDateAjout">Invalid date </string>
+    <string name="apropos">About</string>
 </resources>

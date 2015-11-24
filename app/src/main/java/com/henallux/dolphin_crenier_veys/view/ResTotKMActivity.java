@@ -1,5 +1,6 @@
 package com.henallux.dolphin_crenier_veys.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +19,7 @@ public class ResTotKMActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_res_tot_km, menu);
+        getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
@@ -27,11 +28,30 @@ public class ResTotKMActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.ic_rech:
+                startActivity(new Intent(ResTotKMActivity.this, RechActivity.class));
+                return true;
+            case R.id.ic_ajout:
+                startActivity(new Intent(ResTotKMActivity.this, AjoutActivity.class));
+                return true;
+            case R.id.ic_statDiv:
+                startActivity(new Intent(ResTotKMActivity.this, StatDivisionActivity.class));
+                return true;
+            case R.id.ic_statPisc:
+                startActivity(new Intent(ResTotKMActivity.this, StatPiscineActivity.class));
+                return true;
+            case R.id.ic_supp:
+                startActivity(new Intent(ResTotKMActivity.this, SuppActivity.class));
+                return true;
+            case R.id.ic_totKm:
+                startActivity(new Intent(ResTotKMActivity.this, TotKMActivity.class));
+                return true;
+            case R.id.ic_totSal:
+                startActivity(new Intent(ResTotKMActivity.this, TotSalActivity.class));
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);

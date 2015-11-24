@@ -131,10 +131,32 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+
+            case R.id.ic_rech:
+                startActivity(new Intent(MenuActivity.this, RechActivity.class));
+                return true;
+            case R.id.ic_ajout:
+                startActivity(new Intent(MenuActivity.this, AjoutActivity.class));
+                return true;
+            case R.id.ic_statDiv:
+                startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
+                return true;
+            case R.id.ic_statPisc:
+                startActivity(new Intent(MenuActivity.this, StatPiscineActivity.class));
+                return true;
+            case R.id.ic_supp:
+                startActivity(new Intent(MenuActivity.this, SuppActivity.class));
+                return true;
+            case R.id.ic_totKm:
+                startActivity(new Intent(MenuActivity.this, TotKMActivity.class));
+                return true;
+            case R.id.ic_totSal:
+                startActivity(new Intent(MenuActivity.this, TotSalActivity.class));
+                return true;
+
         }
+
 
         return super.onOptionsItemSelected(item);
     }
