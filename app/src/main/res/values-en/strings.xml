@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name"> Dolphin</string>
-    <string name="title_activity_connexion">connection</string>
-    <string name="title_activity_menu">menu</string>
     <string name="connexion">Connection</string>
     <string name="welcomeMess">Welcome</string>
     <string name="action_settings">Settings</string>
@@ -18,12 +16,6 @@
     <string name="salaire">Salary</string>
     <string name="piscine">swimming pool</string>
     <string name="division">Division</string>
-    <string name="title_activity_supp">SuppActivity</string>
-    <string name="title_activity_rech">RechActivity</string>
-    <string name="title_activity_tot_km">TotKMActivity</string>
-    <string name="title_activity_tot_sal">TotSalActivity</string>
-    <string name="title_activity_stat_piscine">StatPiscineActivity</string>
-    <string name="title_activity_stat_division">StatDivisionActivity</string>
     <string name="secondMatch">Second match</string>
     <string name="categorie">Category</string>
     <string name="date">Date</string>
@@ -41,4 +33,7 @@
     <string name="mois">Month</string>
     <string name="saison">Season</string>
     <string name="totKMLabel">Totals : Kilometer</string>
+    <string name="totSalLabel">Totals : Salary</string>
+    <string name="totButt">Total</string>
+    <string name="verifDateAjout">Invalid date </string>
 </resources>

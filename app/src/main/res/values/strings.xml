@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name"> Dolphin</string>
-    <string name="title_activity_connexion">connexion</string>
-    <string name="title_activity_menu">menu</string>
     <string name="connexion">Connexion</string>
     <string name="welcomeMess">Bienvenue</string>
     <string name="action_settings">Paramètres</string>
@@ -18,40 +16,25 @@
     <string name="salaire">Salaire</string>
     <string name="piscine">Piscine</string>
     <string name="division">Division</string>
-    <string name="title_activity_ajout">AjoutActivity</string>
     <string name="categorie">Categorie</string>
     <string name="secondMatch">Second match</string>
-    <string name="title_activity_supp">SuppActivity</string>
-    <string name="title_activity_rech">RechActivity</string>
-    <string name="title_activity_tot_km">TotKMActivity</string>
-    <string name="title_activity_tot_sal">TotSalActivity</string>
-    <string name="title_activity_stat_piscine">StatPiscineActivity</string>
-    <string name="title_activity_stat_division">StatDivisionActivity</string>
     <string name="date">Date</string>
     <string name="indiceDate">Entrer une date</string>
     <string name="lieu">Lieu</string>
     <string name="ajoutButt">Ajouter</string>
-    <string name="title_activity_res_ajout">ResAjoutActivity</string>
     <string name="BonMatch">Bon match !</string>
     <string name="dateDeb">Date début</string>
     <string name="dateFin">Date Fin</string>
     <string name="VoirMatchs"> Voir matchs</string>
-    <string name="title_activity_list_supp">ListSuppActivity</string>
     <string name="buttonSupp">Supprimer</string>
-    <string name="title_activity_res_rech">ResRechActivity</string>
     <string name="txtRes1">Pour aller jusque la piscne de</string>
     <string name="txtRes2">tu devras parcourir</string>
     <string name="txtRes3">et tu pourras percevoir</string>
-    <string name="title_activity_list_rech">ListRechActivity</string>
     <string name="annee">Année</string>
     <string name="mois">Mois</string>
     <string name="saison">Saison</string>
     <string name="totKMLabel">Totaux : Kilomètre</string>
-    <string name="title_activity_res_tot_km">ResTotKMActivity</string>
-    <string name="title_activity_res_tot_sal">ResTotSalActivity</string>
     <string name="totSalLabel">Totaux : Salaire</string>
     <string name="totButt">Total</string>
-    <string name="title_activity_res_stat_division">ResStatDivisionActivity</string>
-    <string name="title_activity_res_stat_piscine">ResStatPiscineActivity</string>
     <string name="verifDateAjout">Date invalide</string>
 </resources>
