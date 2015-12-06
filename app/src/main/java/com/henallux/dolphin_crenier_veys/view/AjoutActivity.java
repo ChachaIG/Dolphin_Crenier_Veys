@@ -12,7 +12,9 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
+import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,12 +44,11 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         recupDate.setOnClickListener(this);
         ajoutBout = (Button)findViewById(R.id.addMatchButton);
         ajoutBout.setOnClickListener(this);
-
     }
 
     public void onClick(View v) {
-        if (v.getId() == R.id.recupDate) {
-
+        switch(v.getId()) {
+            case R.id.recupDate:
                 DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -66,60 +67,94 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                 }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
                 dialog.show();
-
-
-
-
-        }
-
-        switch (v.getId()) {
+                break;
             case R.id.addMatchButton:
-                startActivity(new Intent(AjoutActivity.this, ResAjoutActivity.class));
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                        startActivity(new Intent(AjoutActivity.this, ResAjoutActivity.class));
+                        break;
+                    }
+
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
         }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-
             case R.id.ic_rech:
-                startActivity(new Intent(AjoutActivity.this, RechActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                        startActivity(new Intent(AjoutActivity.this, RechActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_ajout:
-                startActivity(new Intent(AjoutActivity.this, AjoutActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                        startActivity(new Intent(AjoutActivity.this, AjoutActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statDiv:
-                startActivity(new Intent(AjoutActivity.this, StatDivisionActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                        startActivity(new Intent(AjoutActivity.this, StatDivisionActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statPisc:
-                startActivity(new Intent(AjoutActivity.this, StatPiscineActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                        startActivity(new Intent(AjoutActivity.this, StatPiscineActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_supp:
-                startActivity(new Intent(AjoutActivity.this, SuppActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                        startActivity(new Intent(AjoutActivity.this, SuppActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totKm:
-                startActivity(new Intent(AjoutActivity.this, TotKMActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                        startActivity(new Intent(AjoutActivity.this, TotKMActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totSal:
-                startActivity(new Intent(AjoutActivity.this, TotSalActivity.class));
-                return true;
-
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                        startActivity(new Intent(AjoutActivity.this, TotSalActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
         }
-
-
-
-
         return super.onOptionsItemSelected(item);
     }
 }

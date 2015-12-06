@@ -37,4 +37,6 @@
     <string name="totButt">Total</string>
     <string name="verifDateAjout">Invalid date </string>
     <string name="apropos">About</string>
+    <string name="title_AlertDialogInternet">No internet connection</string>
+    <string name="msg_AlertDialogInternet">Please connect to the internet or try again later</string>
 </resources>

@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 
 
+import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
+import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,9 +32,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.welcomeButton:
-                startActivity(new Intent(MainActivity.this, ConnexionActivity.class));
+        if(v.getId()== R.id.welcomeButton) {
+            try {
+                if(VerificationConnexionInternet.estConnecteAInternet(MainActivity.this))
+                    startActivity(new Intent(MainActivity.this, ConnexionActivity.class));
+
+            }catch (ConnexionException ex){
+                ex.msgException();
+            }
         }
     }
 

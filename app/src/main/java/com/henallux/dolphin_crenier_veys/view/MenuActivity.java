@@ -9,7 +9,10 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
+import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 import android.widget.ExpandableListView;
 
@@ -40,30 +43,78 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 if (groupPosition == 0) {
                     switch (childPosition) {
                         case 0:
-                            startActivity(new Intent(MenuActivity.this, AjoutActivity.class));
-                            break;
+                            try {
+                                if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                    startActivity(new Intent(MenuActivity.this, AjoutActivity.class));
+                                    break;
+                                }
+
+                            }catch (ConnexionException ex){
+                                ex.msgException();
+                            }
+
                         case 1:
-                            startActivity(new Intent(MenuActivity.this, SuppActivity.class));
-                            break;
+                            try {
+                                if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                    startActivity(new Intent(MenuActivity.this, SuppActivity.class));
+                                    break;
+                                }
+
+                            }catch (ConnexionException ex){
+                                ex.msgException();
+                            }
+
                     }
                 } else {
                     if (groupPosition == 2) {
                         switch (childPosition) {
                             case 0:
-                                startActivity(new Intent(MenuActivity.this, TotKMActivity.class));
-                                break;
+                                try {
+                                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                        startActivity(new Intent(MenuActivity.this, TotKMActivity.class));
+                                        break;
+                                    }
+
+                                }catch (ConnexionException ex){
+                                    ex.msgException();
+                                }
+
                             case 1:
-                                startActivity(new Intent(MenuActivity.this, TotSalActivity.class));
-                                break;
+                                try {
+                                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                        startActivity(new Intent(MenuActivity.this, TotSalActivity.class));
+                                        break;
+                                    }
+
+                                }catch (ConnexionException ex){
+                                    ex.msgException();
+                                }
+
                         }
                     } else {
                         switch (childPosition) {
                             case 0:
-                                startActivity(new Intent(MenuActivity.this, StatPiscineActivity.class));
-                                break;
+                                try {
+                                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                        startActivity(new Intent(MenuActivity.this, StatPiscineActivity.class));
+                                        break;
+                                    }
+
+                                }catch (ConnexionException ex){
+                                    ex.msgException();
+                                }
+
                             case 1:
-                                startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
-                                break;
+                                try {
+                                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                        startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
+                                        break;
+                                    }
+
+                                }catch (ConnexionException ex){
+                                    ex.msgException();
+                                }
+
                         }
                     }
 
@@ -78,7 +129,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 if(groupPosition == 1){
-                    startActivity(new Intent(MenuActivity.this, RechActivity.class));
+                    try {
+                        if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this))
+                            startActivity(new Intent(MenuActivity.this, RechActivity.class));
+
+                    }catch (ConnexionException ex){
+                        ex.msgException();
+                    }
+
                 }
                 return false;
             }

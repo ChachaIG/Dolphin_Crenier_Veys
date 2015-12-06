@@ -10,8 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-
+import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
+import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -33,9 +34,14 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void onClick(View v){
-        switch(v.getId()){
-            case R.id.connexionButton:
-                startActivity(new Intent(ConnexionActivity.this,MenuActivity.class));
+        if(v.getId()== R.id.connexionButton) {
+            try {
+                if(VerificationConnexionInternet.estConnecteAInternet(ConnexionActivity.this))
+                    startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
+
+            }catch (ConnexionException ex){
+                ex.msgException();
+            }
         }
 
     }

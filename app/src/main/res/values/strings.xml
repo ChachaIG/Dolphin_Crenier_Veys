@@ -39,5 +39,6 @@
     <string name="verifDateAjout">Date invalide</string>
     <string name="apropos">A propos</string>
     <string name="title_activity_apropos">AproposActivity</string>
-
+    <string name="title_AlertDialogInternet">Pas de connexion internet</string>
+    <string name="msg_AlertDialogInternet">veuillez vour connecter a internet ou réessayez plus tard</string>
 </resources>
