@@ -22,9 +22,30 @@
 
         <TableLayout
             android:layout_width="fill_parent"
-            android:stretchColumns="0"
             android:layout_height="wrap_content"
-            android:id="@+id/idTable">
+            android:stretchColumns="0"
+            android:id="@+id/idTablePiscine">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/piscine"
+                    android:textColor="#0098ff"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/nbMatch"
+                    android:textColor="#0098ff"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </TableRow>
         </TableLayout>
 
     </ScrollView>

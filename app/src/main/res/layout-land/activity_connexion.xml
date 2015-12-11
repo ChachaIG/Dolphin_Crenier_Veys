@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/connexion"
-        android:id="@+id/connexionButton"
+        android:id="@+id/connexionBouton"
         android:layout_alignBottom="@+id/logoDolphin"
         android:layout_alignLeft="@+id/loginText"
         android:layout_alignStart="@+id/loginText"

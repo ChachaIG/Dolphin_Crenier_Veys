@@ -2,10 +2,10 @@
 <resources>
     <string name="app_name"> Dolphin</string>
     <string name="connexion">Connection</string>
-    <string name="welcomeMess">Welcome</string>
-    <string name="action_settings">Settings</string>
-    <string name="loginInput">Username</string>
-    <string name="passwordInput">Password</string>
+    <string name="bienvenueMess">Welcome</string>
+    <string name="parametres">Settings</string>
+    <string name="login">Username</string>
+    <string name="motDePasse">Password</string>
     <string name="gestionMatch">match manager</string>
     <string name="recherche">Search</string>
     <string name="tot">Totals</string>
@@ -21,11 +21,11 @@
     <string name="date">Date</string>
     <string name="indiceDate">Enter a date</string>
     <string name="lieu">Place</string>
-    <string name="ajoutButt">Add</string>
+    <string name="ajoutBout">Add</string>
     <string name="BonMatch">Good match !</string>
     <string name="dateDeb">Start date</string>
     <string name="dateFin">End date</string>
-    <string name="buttonSupp">Delete</string>
+    <string name="suppBout">Delete</string>
     <string name="txtRes1">To go to the swimming pool in</string>
     <string name="txtRes2">you will travel</string>
     <string name="txtRes3">and you could earn</string>
@@ -34,9 +34,9 @@
     <string name="saison">Season</string>
     <string name="totKMLabel">Totals : Kilometer</string>
     <string name="totSalLabel">Totals : Salary</string>
-    <string name="totButt">Total</string>
+    <string name="totBout">Total</string>
     <string name="verifDateAjout">Invalid date </string>
-    <string name="apropos">About</string>
-    <string name="title_AlertDialogInternet">No internet connection</string>
     <string name="msg_AlertDialogInternet">Please connect to the internet or try again later</string>
+    <string name="deconnexion">Deconnection</string>
+    <string name="nbMatch">Nb Match</string>
 </resources>

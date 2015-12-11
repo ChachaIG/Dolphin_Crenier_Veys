@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/BonMatch"
-        android:id="@+id/textLabel"
+        android:id="@+id/textLabelAjout"
         android:background="#ff6e19"
         android:textColor="#ffffff"
         android:textSize="22dp"
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scrollViewAjout"
-        android:layout_below="@+id/textLabel">
+        android:layout_below="@+id/textLabelAjout">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +34,7 @@
     android:layout_height="wrap_content"
     android:text="@string/txtRes1"
     android:id="@+id/resAjout1"
-    android:layout_below="@+id/textLabel"
+    android:layout_below="@+id/textLabelAjout"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="51dp"
     android:textSize="22dp"
@@ -48,7 +48,9 @@
         android:layout_below="@+id/resAjout1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:textSize="26dp"
+        android:textColor="#ff6e19" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -32,11 +32,6 @@
             android:parentActivityName=".view.MenuActivity" >
         </activity>
         <activity
-            android:name=".view.SuppActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".view.MenuActivity" >
-        </activity>
-        <activity
             android:name=".view.RechActivity"
             android:label="@string/app_name"
             android:parentActivityName=".view.MenuActivity" >

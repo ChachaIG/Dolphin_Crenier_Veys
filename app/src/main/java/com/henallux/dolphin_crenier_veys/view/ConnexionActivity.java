@@ -16,9 +16,9 @@ import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText loginInput;
-    private EditText passwordInput;
-    private Button connexionButton;
+    private EditText login;
+    private EditText motDePasse;
+    private Button connexionBouton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void onClick(View v){
-        if(v.getId()== R.id.connexionButton) {
+        if(v.getId()== R.id.connexionBouton) {
             try {
                 if(VerificationConnexionInternet.estConnecteAInternet(ConnexionActivity.this))
                     startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
@@ -47,12 +47,12 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void init(){
-        connexionButton = (Button)this.findViewById(R.id.connexionButton);
-        connexionButton.setOnClickListener(this);
-        loginInput = (EditText)this.findViewById(R.id.loginText);
-        loginInput.setHint(R.string.loginInput);
-        passwordInput = (EditText)this.findViewById(R.id.passwordText);
-        passwordInput.setHint(R.string.passwordInput);
+        connexionBouton = (Button)this.findViewById(R.id.connexionBouton);
+        connexionBouton.setOnClickListener(this);
+        login = (EditText)this.findViewById(R.id.loginText);
+        login.setHint(R.string.login);
+        motDePasse = (EditText)this.findViewById(R.id.passwordText);
+        motDePasse.setHint(R.string.motDePasse);
     }
 
     @Override

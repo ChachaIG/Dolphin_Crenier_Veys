@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/connexion"
-        android:id="@+id/connexionButton"
+        android:id="@+id/connexionBouton"
         android:layout_below="@+id/passwordText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />

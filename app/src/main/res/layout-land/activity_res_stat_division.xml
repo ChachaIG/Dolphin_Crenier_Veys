@@ -24,7 +24,23 @@
             android:layout_width="fill_parent"
             android:stretchColumns="0"
             android:layout_height="wrap_content"
-            android:id="@+id/idTable">
+            android:id="@+id/idTableDiv">
+            <TableRow >
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/division"
+                    android:padding="10dp"
+                    android:textColor="#0098ff"
+                    android:textStyle="bold"
+                    android:textSize="18dp" />
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nbMatch"
+                    android:padding="10dp"
+                    android:textColor="#0098ff"
+                    android:textStyle="bold"
+                    android:textSize="18dp" />
+            </TableRow>
         </TableLayout>
 
     </ScrollView>

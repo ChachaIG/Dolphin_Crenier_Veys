@@ -21,7 +21,6 @@ public class ConnexionException extends Exception {
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
                     }
                 });
         AlertDialog alert = builder.create();

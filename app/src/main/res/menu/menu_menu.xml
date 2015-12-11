@@ -37,4 +37,7 @@
         android:title="@string/piscine"
         app:showAsAction="never"
         />
+    <item android:id="@+id/ic_deconnect"
+        android:title="@string/deconnexion"
+        app:showAsAction="never"/>
 </menu>

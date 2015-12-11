@@ -1,75 +1,97 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     tools:context="com.henallux.dolphin_crenier_veys.view.ResAjoutActivity">
 
     <TextView
+        android:id="@+id/textLabelAjout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/BonMatch"
-        android:id="@+id/textLabel"
         android:background="#ff6e19"
-        android:textColor="#ffffff"
-        android:textSize="22dp"
         android:gravity="center"
-        android:padding="20dp"/>
-
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/txtRes1"
-    android:id="@+id/resAjout1"
-    android:layout_below="@+id/textLabel"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="51dp"
-    android:textSize="22dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/resAjout2"
-        android:layout_below="@+id/resAjout1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txtRes2"
-        android:id="@+id/resAjout3"
-        android:layout_below="@+id/resAjout2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:padding="20dp"
+        android:text="@string/BonMatch"
+        android:textColor="#ffffff"
         android:textSize="22dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/resAjout4"
-        android:layout_below="@+id/resAjout3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textLabelAjout">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txtRes3"
-        android:id="@+id/resAjout5"
-        android:layout_below="@+id/resAjout4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:textSize="22dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/resAjout6"
-        android:layout_below="@+id/resAjout5"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+
+            <TextView
+                android:id="@+id/resAjout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textLabelAjout"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="51dp"
+                android:text="@string/txtRes1"
+                android:textSize="22dp" />
+
+            <TextView
+                android:id="@+id/resAjout2"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/resAjout1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="26dp"
+                android:textColor="#ff6e19" />
+
+            <TextView
+                android:id="@+id/resAjout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/resAjout2"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:text="@string/txtRes2"
+                android:textSize="22dp" />
+
+            <TextView
+                android:id="@+id/resAjout4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/resAjout3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:text=""
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/resAjout5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/resAjout4"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="35dp"
+                android:text="@string/txtRes3"
+                android:textSize="22dp" />
+
+            <TextView
+                android:id="@+id/resAjout6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/resAjout5"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:text=""
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

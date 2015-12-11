@@ -15,20 +15,13 @@ import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button welcomeButton;
+    private Button bienvenueBout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     public void onClick(View v) {
@@ -44,19 +37,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void init() {
-        welcomeButton = (Button) this.findViewById(R.id.welcomeButton);
-        welcomeButton.setOnClickListener(this);
+        bienvenueBout = (Button) this.findViewById(R.id.welcomeButton);
+        bienvenueBout.setOnClickListener(this);
 
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-        return super.onOptionsItemSelected(item);
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 }

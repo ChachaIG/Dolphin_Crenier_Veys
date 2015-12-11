@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
+import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 public class ResTotSalActivity extends AppCompatActivity {
 
@@ -18,43 +20,78 @@ public class ResTotSalActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
 
             case R.id.ic_rech:
-                startActivity(new Intent(ResTotSalActivity.this, RechActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
+                        startActivity(new Intent(ResTotSalActivity.this, RechActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_ajout:
-                startActivity(new Intent(ResTotSalActivity.this, AjoutActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
+                        startActivity(new Intent(ResTotSalActivity.this, AjoutActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statDiv:
-                startActivity(new Intent(ResTotSalActivity.this, StatDivisionActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
+                        startActivity(new Intent(ResTotSalActivity.this, StatDivisionActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statPisc:
-                startActivity(new Intent(ResTotSalActivity.this, StatPiscineActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
+                        startActivity(new Intent(ResTotSalActivity.this, StatPiscineActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_supp:
-                startActivity(new Intent(ResTotSalActivity.this, SuppActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
+                        startActivity(new Intent(ResTotSalActivity.this, ListSuppActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totKm:
-                startActivity(new Intent(ResTotSalActivity.this, TotKMActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
+                        startActivity(new Intent(ResTotSalActivity.this, TotKMActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totSal:
-                startActivity(new Intent(ResTotSalActivity.this, TotSalActivity.class));
-                return true;
-
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
+                        startActivity(new Intent(ResTotSalActivity.this, TotSalActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }

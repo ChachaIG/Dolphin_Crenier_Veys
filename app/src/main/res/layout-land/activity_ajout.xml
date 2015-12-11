@@ -1,152 +1,150 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.henallux.dolphin_crenier_veys.view.AjoutActivity">
 
 
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ajoutMatch"
-            android:id="@+id/textLabel"
-            android:background="#ff6e19"
-            android:textColor="#ffffff"
-            android:textSize="22dp"
-            android:gravity="center"
-            android:padding="20dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/scrollView"
-            android:layout_alignEnd="@+id/scrollView" />
+    <TextView
+        android:id="@+id/textLabelAjout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/scrollViewMenu"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/scrollViewMenu"
+        android:background="#ff6e19"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/ajoutMatch"
+        android:textColor="#ffffff"
+        android:textSize="22dp" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/scrollViewAjout"
-        android:layout_below="@+id/textLabel">
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:weightSum="1">
+        android:layout_height="500dp"
+        android:layout_below="@+id/textLabelAjout">
 
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/secondMatch"
-        android:id="@+id/textSecond"
-        android:textSize="18dp"
-        android:padding="20dp"
-        android:layout_below="@+id/textLabel"
-        android:layout_alignLeft="@+id/textLabel"
-        android:layout_alignStart="@+id/textLabel"
-        android:layout_alignRight="@+id/textLabel"
-        android:layout_alignEnd="@+id/textLabel" />
-
-        <Switch
-     android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-    android:id="@+id/switch1"
-            android:layout_alignRight="@+id/textLabel"
-    android:layout_alignEnd="@+id/textLabel"
-            android:layout_gravity="right"
-            android:layout_weight="0.33"
-            android:layout_marginTop="-50dp"
-            android:layout_marginRight="20dp" />
-
-        <TextView
-     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/categorie"
-    android:id="@+id/textCat"
-    android:textSize="18dp"
-    android:textStyle="bold"
-    android:background="#cdcdcd"
-    android:padding="20dp"
-    android:layout_below="@+id/textSecond"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignRight="@+id/textSecond"
-    android:layout_alignEnd="@+id/textSecond"
-            android:layout_marginTop="20dp" />
-
-        <ListView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:id="@+id/listView"
-            android:layout_below="@+id/textCat"
-            android:layout_alignLeft="@+id/textCat"
-            android:layout_alignStart="@+id/textCat" />
-
-        <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/date"
-    android:id="@+id/textDate"
-    android:textSize="18dp"
-    android:textStyle="bold"
-    android:background="#cdcdcd"
-    android:padding="20dp"
-
-    android:layout_below="@+id/textCat"
-    android:layout_alignLeft="@+id/listView"
-        android:layout_alignStart="@+id/listView"
-            android:layout_alignRight="@+id/listView"
-    android:layout_alignEnd="@+id/listView" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:id="@+id/recupDate"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="145dp"
-            android:layout_weight="0.20"
-            android:padding="15dp" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lieu"
-            android:id="@+id/textLieu"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:background="#cdcdcd"
-            android:padding="20dp"
-            android:layout_below="@+id/recupDate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/textSecond"
-            android:layout_alignEnd="@+id/textSecond"
-            android:layout_marginTop="-140dp" />
+            <TextView
+                android:id="@+id/textSecond"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textLabelAjout"
+                android:layout_alignLeft="@+id/textLabelAjout"
+                android:layout_alignRight="@+id/textLabelAjout"
+                android:layout_alignStart="@+id/textLabelAjout"
+                android:layout_below="@+id/textLabelAjout"
+                android:padding="20dp"
+                android:text="@string/secondMatch"
+                android:textSize="18dp" />
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:id="@+id/listViewLieu"
-            android:layout_below="@+id/textLieu"
-            android:layout_alignLeft="@+id/textCat"
-            android:layout_alignStart="@+id/textCat" />
+            <Switch
+                android:id="@+id/secondMatch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textLabelAjout"
+                android:layout_alignRight="@+id/textLabelAjout"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="-50dp"
+                android:layout_weight="0.33" />
 
-        <Button
-            android:id="@+id/addMatchButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ajoutButt"
-            android:gravity="center"
-            android:layout_marginTop="10dp" />
+            <TextView
+                android:id="@+id/textCat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textSecond"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/textSecond"
+                android:layout_below="@+id/textSecond"
+                android:layout_marginTop="20dp"
+                android:background="#cdcdcd"
+                android:padding="20dp"
+                android:text="@string/categorie"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/recupCat" />
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#cdcdcd"
+                android:padding="20dp"
+                android:text="@string/date"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/listView"
+                android:layout_alignLeft="@+id/listView"
+                android:layout_alignRight="@+id/listView"
+                android:layout_alignStart="@+id/listView"
+                android:layout_below="@+id/textCat" />
+
+            <TextView
+                android:id="@+id/recupDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="145dp"
+                android:layout_weight="0.20"
+                android:padding="15dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textLieu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textSecond"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/textSecond"
+                android:layout_below="@+id/recupDate"
+                android:layout_marginTop="-140dp"
+                android:background="#cdcdcd"
+                android:padding="20dp"
+                android:text="@string/lieu"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/recupLieu" />
+
+            <Button
+                android:id="@+id/ajoutMatchBouton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/ajoutBout" />
+
+        </LinearLayout>
     </ScrollView>
-
 
 
 </RelativeLayout>

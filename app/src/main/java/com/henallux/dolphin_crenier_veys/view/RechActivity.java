@@ -12,7 +12,9 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
+import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,13 +24,13 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView recupDateDeb;
     private TextView recupDateFin;
-    private SimpleDateFormat dateFormatterDeb;
-    private SimpleDateFormat dateFormatterFin;
-    private Button rechButton;
-    private Calendar newDateDeb;
-    private long timeDateDeb;
-    private Calendar newDateFin;
-    private long timeDateFin;
+    private SimpleDateFormat dateFormatDeb;
+    private SimpleDateFormat dateFormatFin;
+    private Button rechBout;
+    private Calendar nouvDateDeb;
+    private long tpsDateDeb;
+    private Calendar nouvDateFin;
+    private long tpsDateFin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,46 +46,41 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
         recupDateFin = (TextView)findViewById(R.id.recupDateFin);
         recupDateFin.setHint(R.string.indiceDate);
         recupDateFin.setOnClickListener(this);
-        rechButton = (Button)findViewById(R.id.buttonRech);
-        rechButton.setOnClickListener(this);
+        rechBout = (Button)findViewById(R.id.boutonRech);
+        rechBout.setOnClickListener(this);
     }
 
     public void onClick(View v){
-        if(v.getId()==R.id.recupDateDeb) {
-            DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        setDateDebRech(v);
+        setDateFinRech(v);
 
-                    dateFormatterDeb = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-
-                    newDateDeb = Calendar.getInstance();
-
-                    newDateDeb.set(year, monthOfYear, dayOfMonth);
-
-                    recupDateDeb.setText(dateFormatterDeb.format(newDateDeb.getTime()));
-
-                }
-            }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-            dialog.show();
+        if(v.getId()==R.id.boutonRech){
+            if(nouvDateDeb != null && nouvDateFin != null)
+                 startActivity(new Intent(RechActivity.this, ListRechActivity.class));
+            else
+                Toast.makeText(RechActivity.this,R.string.verifDateAjout,Toast.LENGTH_SHORT).show();
         }
 
-        if(v.getId()==R.id.recupDateFin) {
+    }
+
+    private void setDateFinRech(View v) {
+        if(v.getId()== R.id.recupDateFin) {
             DatePickerDialog dialogFin = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
 
-                    dateFormatterFin = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                    dateFormatFin = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-                    newDateFin = Calendar.getInstance();
+                    nouvDateFin = Calendar.getInstance();
 
-                    newDateFin.set(year, monthOfYear, dayOfMonth);
+                    nouvDateFin.set(year, monthOfYear, dayOfMonth);
 
-                    timeDateDeb = newDateDeb.getTimeInMillis();
-                    timeDateFin =newDateFin.getTimeInMillis();
+                    tpsDateDeb = nouvDateDeb.getTimeInMillis();
+                    tpsDateFin = nouvDateFin.getTimeInMillis();
 
-                    if(timeDateFin > timeDateDeb)
-                        recupDateFin.setText(dateFormatterFin.format(newDateFin.getTime()));
+                    if(tpsDateFin > tpsDateDeb)
+                        recupDateFin.setText(dateFormatFin.format(nouvDateFin.getTime()));
                     else
                         Toast.makeText(RechActivity.this, R.string.verifDateAjout, Toast.LENGTH_LONG).show();
                 }
@@ -91,53 +88,101 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
 
             dialogFin.show();
         }
+    }
 
-        if(v.getId()==R.id.buttonRech){
-            startActivity(new Intent(RechActivity.this, ListRechActivity.class));
+    private void setDateDebRech(View v) {
+        if(v.getId()== R.id.recupDateDeb) {
+            DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+                    dateFormatDeb = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+
+                    nouvDateDeb = Calendar.getInstance();
+
+                    nouvDateDeb.set(year, monthOfYear, dayOfMonth);
+
+                    recupDateDeb.setText(dateFormatDeb.format(nouvDateDeb.getTime()));
+
+                }
+            }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+            dialog.show();
         }
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
         switch (item.getItemId()) {
-
             case R.id.ic_rech:
-                startActivity(new Intent(RechActivity.this, RechActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                        startActivity(new Intent(RechActivity.this, RechActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_ajout:
-                startActivity(new Intent(RechActivity.this, AjoutActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                        startActivity(new Intent(RechActivity.this, AjoutActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statDiv:
-                startActivity(new Intent(RechActivity.this, StatDivisionActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                        startActivity(new Intent(RechActivity.this, StatDivisionActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statPisc:
-                startActivity(new Intent(RechActivity.this, StatPiscineActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                        startActivity(new Intent(RechActivity.this, StatPiscineActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_supp:
-                startActivity(new Intent(RechActivity.this, SuppActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                        startActivity(new Intent(RechActivity.this, ListSuppActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totKm:
-                startActivity(new Intent(RechActivity.this, TotKMActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                        startActivity(new Intent(RechActivity.this, TotKMActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totSal:
-                startActivity(new Intent(RechActivity.this, TotSalActivity.class));
-                return true;
-
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                        startActivity(new Intent(RechActivity.this, TotSalActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -21,7 +21,7 @@ import android.widget.ExpandableListView;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ExpandableListAdapter listAdapter;
+    ExpandableListAdapter listAdaptateur;
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
@@ -36,104 +36,97 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     public void init(){
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
         prepareListData();
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-        expListView.setAdapter(listAdapter);
+        listAdaptateur = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        expListView.setAdapter(listAdaptateur);
+        navigationMenu();
+
+
+    }
+
+    public void onClick(View v){
+
+    }
+
+    private void navigationMenu() {
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 if (groupPosition == 0) {
                     switch (childPosition) {
                         case 0:
                             try {
-                                if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
                                     startActivity(new Intent(MenuActivity.this, AjoutActivity.class));
                                     break;
                                 }
-
-                            }catch (ConnexionException ex){
+                            } catch (ConnexionException ex) {
                                 ex.msgException();
                             }
-
                         case 1:
                             try {
-                                if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
-                                    startActivity(new Intent(MenuActivity.this, SuppActivity.class));
+                                if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                    startActivity(new Intent(MenuActivity.this, ListSuppActivity.class));
                                     break;
                                 }
-
-                            }catch (ConnexionException ex){
+                            } catch (ConnexionException ex) {
                                 ex.msgException();
                             }
-
                     }
                 } else {
                     if (groupPosition == 2) {
                         switch (childPosition) {
                             case 0:
                                 try {
-                                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                    if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
                                         startActivity(new Intent(MenuActivity.this, TotKMActivity.class));
                                         break;
                                     }
-
-                                }catch (ConnexionException ex){
+                                } catch (ConnexionException ex) {
                                     ex.msgException();
                                 }
-
                             case 1:
                                 try {
-                                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                    if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
                                         startActivity(new Intent(MenuActivity.this, TotSalActivity.class));
                                         break;
                                     }
-
-                                }catch (ConnexionException ex){
+                                } catch (ConnexionException ex) {
                                     ex.msgException();
                                 }
-
                         }
                     } else {
                         switch (childPosition) {
                             case 0:
                                 try {
-                                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                    if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
                                         startActivity(new Intent(MenuActivity.this, StatPiscineActivity.class));
                                         break;
                                     }
-
-                                }catch (ConnexionException ex){
+                                } catch (ConnexionException ex) {
                                     ex.msgException();
                                 }
-
                             case 1:
                                 try {
-                                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                                    if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
                                         startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
                                         break;
                                     }
-
-                                }catch (ConnexionException ex){
+                                } catch (ConnexionException ex) {
                                     ex.msgException();
                                 }
-
                         }
                     }
-
                 }
-
                 return false;
-
-            }
-        });
-
+            }});
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                if(groupPosition == 1){
+                if (groupPosition == 1) {
                     try {
-                        if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this))
+                        if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this))
                             startActivity(new Intent(MenuActivity.this, RechActivity.class));
 
-                    }catch (ConnexionException ex){
+                    } catch (ConnexionException ex) {
                         ex.msgException();
                     }
 
@@ -142,7 +135,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-
 
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
@@ -171,51 +163,80 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         listDataChild.put(listDataHeader.get(3), subStat);
     }
 
-    public void onClick(View v){
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        switch (item.getItemId()) {
-
+        switch (id) {
             case R.id.ic_rech:
-                startActivity(new Intent(MenuActivity.this, RechActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                        startActivity(new Intent(MenuActivity.this, RechActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_ajout:
-                startActivity(new Intent(MenuActivity.this, AjoutActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                        startActivity(new Intent(MenuActivity.this, AjoutActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statDiv:
-                startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                        startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statPisc:
-                startActivity(new Intent(MenuActivity.this, StatPiscineActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                        startActivity(new Intent(MenuActivity.this, StatPiscineActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_supp:
-                startActivity(new Intent(MenuActivity.this, SuppActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                        startActivity(new Intent(MenuActivity.this, ListSuppActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totKm:
-                startActivity(new Intent(MenuActivity.this, TotKMActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                        startActivity(new Intent(MenuActivity.this, TotKMActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totSal:
-                startActivity(new Intent(MenuActivity.this, TotSalActivity.class));
-                return true;
-
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
+                        startActivity(new Intent(MenuActivity.this, TotSalActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }

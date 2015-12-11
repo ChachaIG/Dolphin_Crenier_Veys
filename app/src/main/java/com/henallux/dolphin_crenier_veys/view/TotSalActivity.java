@@ -12,8 +12,11 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
+import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,8 +28,9 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
     private Switch moisSw;
     private Switch saisonSw;
     private TextView recupLaps;
-    private SimpleDateFormat dateFormatter;
-    private Button totalButt;
+    private SimpleDateFormat dateFormat;
+    private Button totalBout;
+    private Calendar laps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,15 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
         recupLaps = (TextView)findViewById(R.id.recupLaps);
         recupLaps.setOnClickListener(this);
         recupLaps.setHint(R.string.indiceDate);
-        totalButt = (Button)findViewById(R.id.buttonTot);
-        totalButt.setOnClickListener(this);
+        totalBout = (Button)findViewById(R.id.buttonTot);
+        totalBout.setOnClickListener(this);
+        regroupementDesSwitch();
+
+
+
+    }
+
+    private void regroupementDesSwitch() {
         anneeeSw = (Switch)findViewById(R.id.switchAnnee);
         moisSw = (Switch)findViewById(R.id.switchMois);
         saisonSw = (Switch)findViewById(R.id.switchSaison);
@@ -82,70 +93,108 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-
-
-
     }
 
     public void onClick(View v) {
+        setLapsTemps(v);
+        if(v.getId() == R.id.buttonTot){
+            if(laps != null)
+                startActivity(new Intent(TotSalActivity.this, ResTotSalActivity.class));
+            else
+                Toast.makeText(TotSalActivity.this,R.string.verifDateAjout,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setLapsTemps(View v) {
         if (v.getId() == R.id.recupLaps) {
             DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                    dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-                    Calendar newDate = Calendar.getInstance();
-                    newDate.set(year, monthOfYear, dayOfMonth);
-                    recupLaps.setText(dateFormatter.format(newDate.getTime()));
+                    dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                    laps = Calendar.getInstance();
+                    laps.set(year, monthOfYear, dayOfMonth);
+                    recupLaps.setText(dateFormat.format(laps.getTime()));
                 }
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
             dialog.show();
 
         }
-        if(v.getId() == R.id.buttonTot){
-            startActivity(new Intent(TotSalActivity.this, ResTotSalActivity.class));
-        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-
             case R.id.ic_rech:
-                startActivity(new Intent(TotSalActivity.this, RechActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {
+                        startActivity(new Intent(TotSalActivity.this, RechActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_ajout:
-                startActivity(new Intent(TotSalActivity.this, AjoutActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {
+                        startActivity(new Intent(TotSalActivity.this, AjoutActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statDiv:
-                startActivity(new Intent(TotSalActivity.this, StatDivisionActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {
+                        startActivity(new Intent(TotSalActivity.this, StatDivisionActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_statPisc:
-                startActivity(new Intent(TotSalActivity.this, StatPiscineActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {
+                        startActivity(new Intent(TotSalActivity.this, StatPiscineActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_supp:
-                startActivity(new Intent(TotSalActivity.this, SuppActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {
+                        startActivity(new Intent(TotSalActivity.this, ListSuppActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totKm:
-                startActivity(new Intent(TotSalActivity.this, TotKMActivity.class));
-                return true;
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {
+                        startActivity(new Intent(TotSalActivity.this, TotKMActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
             case R.id.ic_totSal:
-                startActivity(new Intent(TotSalActivity.this, TotSalActivity.class));
-                return true;
-
+                try {
+                    if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {
+                        startActivity(new Intent(TotSalActivity.this, TotSalActivity.class));
+                        return true;
+                    }
+                }catch (ConnexionException ex){
+                    ex.msgException();
+                }
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }

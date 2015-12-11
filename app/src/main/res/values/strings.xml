@@ -2,10 +2,10 @@
 <resources>
     <string name="app_name"> Dolphin</string>
     <string name="connexion">Connexion</string>
-    <string name="welcomeMess">Bienvenue</string>
-    <string name="action_settings">Paramètres</string>
-    <string name="loginInput">Nom utilisteur</string>
-    <string name="passwordInput">Mot de passe</string>
+    <string name="bienvenueMess">Bienvenue</string>
+    <string name="parametres">Paramètres</string>
+    <string name="login">Nom utilisteur</string>
+    <string name="motDePasse">Mot de passe</string>
     <string name="gestionMatch">Gestion match</string>
     <string name="recherche">Recherche</string>
     <string name="tot">Totaux</string>
@@ -21,12 +21,12 @@
     <string name="date">Date</string>
     <string name="indiceDate">Entrer une date</string>
     <string name="lieu">Lieu</string>
-    <string name="ajoutButt">Ajouter</string>
+    <string name="ajoutBout">Ajouter</string>
     <string name="BonMatch">Bon match !</string>
     <string name="dateDeb">Date début</string>
     <string name="dateFin">Date Fin</string>
     <string name="VoirMatchs"> Voir matchs</string>
-    <string name="buttonSupp">Supprimer</string>
+    <string name="suppBout">Supprimer</string>
     <string name="txtRes1">Pour aller jusque la piscne de</string>
     <string name="txtRes2">tu devras parcourir</string>
     <string name="txtRes3">et tu pourras percevoir</string>
@@ -35,10 +35,10 @@
     <string name="saison">Saison</string>
     <string name="totKMLabel">Totaux : Kilomètre</string>
     <string name="totSalLabel">Totaux : Salaire</string>
-    <string name="totButt">Total</string>
+    <string name="totBout">Total</string>
     <string name="verifDateAjout">Date invalide</string>
-    <string name="apropos">A propos</string>
-    <string name="title_activity_apropos">AproposActivity</string>
     <string name="title_AlertDialogInternet">Pas de connexion internet</string>
     <string name="msg_AlertDialogInternet">veuillez vour connecter a internet ou réessayez plus tard</string>
+    <string name="deconnexion">Déconnexion</string>
+    <string name="nbMatch">Nb Match</string>
 </resources>
