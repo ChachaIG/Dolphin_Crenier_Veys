@@ -38,5 +38,8 @@
     <string name="verifDateAjout">Invalid date </string>
     <string name="msg_AlertDialogInternet">Please connect to the internet or try again later</string>
     <string name="deconnexion">Deconnection</string>
-    <string name="nbMatch">Nb Match</string>
+    <string name="erreurJSON">Error HTTP</string>
+    <string name="utilInex">Inexisting user</string>
+    <string name="erreurMDP">wrong password</string>
+    <string name="erreurCrypt">Error during password treatment </string>
 </resources>

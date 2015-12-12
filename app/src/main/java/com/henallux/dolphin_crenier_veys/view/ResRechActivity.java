@@ -90,6 +90,10 @@ public class ResRechActivity extends AppCompatActivity {
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(ResRechActivity.this, ConnexionActivity.class));
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

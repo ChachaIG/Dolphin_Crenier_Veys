@@ -195,6 +195,9 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(TotKMActivity.this, ConnexionActivity.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

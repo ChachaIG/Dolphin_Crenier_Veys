@@ -183,6 +183,9 @@ public class ResStatDivisionActivity extends AppCompatActivity {
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(ResStatDivisionActivity.this, ConnexionActivity.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

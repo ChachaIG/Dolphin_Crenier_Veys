@@ -30,67 +30,71 @@ public class ListSuppActivity extends AppCompatActivity {
 
             case R.id.ic_rech:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
                         startActivity(new Intent(ListSuppActivity.this, RechActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_ajout:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
                         startActivity(new Intent(ListSuppActivity.this, AjoutActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_statDiv:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
                         startActivity(new Intent(ListSuppActivity.this, StatDivisionActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_statPisc:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
                         startActivity(new Intent(ListSuppActivity.this, StatPiscineActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_supp:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
                         startActivity(new Intent(ListSuppActivity.this, ListSuppActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_totKm:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
                         startActivity(new Intent(ListSuppActivity.this, TotKMActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_totSal:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
                         startActivity(new Intent(ListSuppActivity.this, TotSalActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(ListSuppActivity.this, ConnexionActivity.class));
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

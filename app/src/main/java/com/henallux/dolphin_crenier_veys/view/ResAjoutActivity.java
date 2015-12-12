@@ -17,6 +17,10 @@ public class ResAjoutActivity extends AppCompatActivity {
 
     private Piscine piscine = new Piscine();
     private TextView resPiscine;
+    private TextView distance;
+    private String distAffichage;
+    private TextView cout;
+    private String coutAffichage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +29,21 @@ public class ResAjoutActivity extends AppCompatActivity {
         init();
     }
 
-    public void init(){
+    public void init() {
 
         Bundle bundle = this.getIntent().getExtras();
         piscine.setId(bundle.getInt("IdLieu"));
         piscine.setNom(bundle.getString("NomPiscine"));
         piscine.setAdrLatitude(bundle.getDouble("AdrLat"));
         piscine.setAdrLongitutde(bundle.getDouble("AdrLon"));
-        resPiscine = (TextView)findViewById(R.id.resAjout2);
+        resPiscine = (TextView) findViewById(R.id.resAjout2);
         resPiscine.setText(piscine.getNom());
+        distance = (TextView)findViewById(R.id.resAjout4);
+        distAffichage = ""+bundle.getDouble("DISTANCE")+" KM";
+        distance.setText(distAffichage);
+        cout=(TextView)findViewById(R.id.resAjout6);
+        coutAffichage = ""+bundle.getDouble("COUT")+"euros";
+        cout.setText(coutAffichage);
 
 
     }
@@ -49,67 +59,71 @@ public class ResAjoutActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.ic_rech:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
                         startActivity(new Intent(ResAjoutActivity.this, RechActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_ajout:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
                         startActivity(new Intent(ResAjoutActivity.this, AjoutActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_statDiv:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
                         startActivity(new Intent(ResAjoutActivity.this, StatDivisionActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_statPisc:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
                         startActivity(new Intent(ResAjoutActivity.this, StatPiscineActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_supp:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
                         startActivity(new Intent(ResAjoutActivity.this, ListSuppActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_totKm:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
                         startActivity(new Intent(ResAjoutActivity.this, TotKMActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_totSal:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
                         startActivity(new Intent(ResAjoutActivity.this, TotSalActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(ResAjoutActivity.this, ConnexionActivity.class));
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

@@ -175,6 +175,9 @@ public class ResStatPiscineActivity extends AppCompatActivity {
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(ResStatPiscineActivity.this, ConnexionActivity.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

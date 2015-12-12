@@ -191,6 +191,9 @@ public class StatDivisionActivity extends AppCompatActivity implements View.OnCl
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(StatDivisionActivity.this, ConnexionActivity.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

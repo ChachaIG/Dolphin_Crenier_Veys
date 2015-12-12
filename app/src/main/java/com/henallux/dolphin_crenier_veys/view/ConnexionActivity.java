@@ -8,17 +8,36 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
+import com.henallux.dolphin_crenier_veys.controller.ApplicationController;
+import com.henallux.dolphin_crenier_veys.dataAccess.Singleton;
 import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
+import com.henallux.dolphin_crenier_veys.exception.CryptageMotDePasseException;
+import com.henallux.dolphin_crenier_veys.model.Utilisateur;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.security.NoSuchAlgorithmException;
 
 public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText login;
     private EditText motDePasse;
+    private String motDePasseStr;
+    private String mdpCrypt;
     private Button connexionBouton;
+    private String log;
+    private String upperLog;
+    private ApplicationController ac = new ApplicationController();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +47,6 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -37,13 +55,67 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         if(v.getId()== R.id.connexionBouton) {
             try {
                 if(VerificationConnexionInternet.estConnecteAInternet(ConnexionActivity.this))
-                    startActivity(new Intent(ConnexionActivity.this, MenuActivity.class));
+                    verificationLogin();
 
             }catch (ConnexionException ex){
                 ex.msgException();
             }
         }
 
+    }
+
+    private void verificationLogin(){
+        log = login.getText().toString();
+        upperLog = log.toUpperCase();
+
+        JsonObjectRequest getDiv = new JsonObjectRequest(Request.Method.GET,"http://dolphinapp.azurewebsites.net/api/utilisateur?login="+upperLog, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Utilisateur util = new Utilisateur(response.getInt("ID_UTILISATEUR"),
+                            response.getString("LOGIN"), response.getString("MOTDEPASSE"),
+                            response.getString("NOM"),
+                            response.getString("PRENOM"),
+                            response.getDouble("ADR_LATITUDE"),
+                            response.getDouble("ADR_LONGITUDE"));
+                            motDePasseStr = motDePasse.getText().toString();
+                            ////////////////////////////////////////////////////////
+                            ////A DECOMMENTER POUR PRENDRE EN CHARGE LE CRYPTAGE////
+                            ////////////////////////////////////////////////////////
+                            /*try {
+                                mdpCrypt = ac.cryptageMDP(motDePasseStr, ConnexionActivity.this);
+                            }catch(NoSuchAlgorithmException e){
+                                e.printStackTrace();
+                            }
+                            catch(CryptageMotDePasseException e){
+                                Toast.makeText(ConnexionActivity.this, e.msgException(),Toast.LENGTH_SHORT).show();
+                            }*/
+                            ////////////////////////////////////////////////////////
+                            ////////////////////////////////////////////////////////
+                            //!\ UNE FOIS CRYPTAGE FONCTIONNEL REMPLACER motDePasseStr PAR mdpCrypt/!\\
+                            ///////////////////////////////////////////////////////////////
+                            if(motDePasseStr.equals(util.getMotDepasse()) == false) {
+                                Toast.makeText(ConnexionActivity.this, R.string.erreurMDP, Toast.LENGTH_SHORT).show();
+                            }
+                            if(motDePasseStr.equals(util.getMotDepasse())){
+                                Intent intent = new Intent(ConnexionActivity.this, MenuActivity.class);
+                                intent.putExtra("idUtil", util.getIdUtilisateur());
+                                intent.putExtra("prenomUtil",util.getPrenom());
+                                intent.putExtra("adrLat",util.getAdrLatitude());
+                                intent.putExtra("adrLong",util.getAdrLongitude());
+                                startActivity(intent);
+                            }
+                } catch (JSONException e) {
+                    Toast.makeText(ConnexionActivity.this,R.string.erreurJSON,Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                volleyError.printStackTrace();
+            }
+        });
+        Singleton.getInstance(this).addToRequestQueue(getDiv);
     }
 
     public void init(){

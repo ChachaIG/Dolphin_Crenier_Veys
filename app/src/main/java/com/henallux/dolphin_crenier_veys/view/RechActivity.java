@@ -39,32 +39,32 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
         init();
     }
 
-    public void init(){
-        recupDateDeb = (TextView)findViewById(R.id.recupDateDeb);
+    public void init() {
+        recupDateDeb = (TextView) findViewById(R.id.recupDateDeb);
         recupDateDeb.setHint(R.string.indiceDate);
         recupDateDeb.setOnClickListener(this);
-        recupDateFin = (TextView)findViewById(R.id.recupDateFin);
+        recupDateFin = (TextView) findViewById(R.id.recupDateFin);
         recupDateFin.setHint(R.string.indiceDate);
         recupDateFin.setOnClickListener(this);
-        rechBout = (Button)findViewById(R.id.boutonRech);
+        rechBout = (Button) findViewById(R.id.boutonRech);
         rechBout.setOnClickListener(this);
     }
 
-    public void onClick(View v){
+    public void onClick(View v) {
         setDateDebRech(v);
         setDateFinRech(v);
 
-        if(v.getId()==R.id.boutonRech){
-            if(nouvDateDeb != null && nouvDateFin != null)
-                 startActivity(new Intent(RechActivity.this, ListRechActivity.class));
+        if (v.getId() == R.id.boutonRech) {
+            if (nouvDateDeb != null && nouvDateFin != null)
+                startActivity(new Intent(RechActivity.this, ListRechActivity.class));
             else
-                Toast.makeText(RechActivity.this,R.string.verifDateAjout,Toast.LENGTH_SHORT).show();
+                Toast.makeText(RechActivity.this, R.string.verifDateAjout, Toast.LENGTH_SHORT).show();
         }
 
     }
 
     private void setDateFinRech(View v) {
-        if(v.getId()== R.id.recupDateFin) {
+        if (v.getId() == R.id.recupDateFin) {
             DatePickerDialog dialogFin = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -79,7 +79,7 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
                     tpsDateDeb = nouvDateDeb.getTimeInMillis();
                     tpsDateFin = nouvDateFin.getTimeInMillis();
 
-                    if(tpsDateFin > tpsDateDeb)
+                    if (tpsDateFin > tpsDateDeb)
                         recupDateFin.setText(dateFormatFin.format(nouvDateFin.getTime()));
                     else
                         Toast.makeText(RechActivity.this, R.string.verifDateAjout, Toast.LENGTH_LONG).show();
@@ -91,7 +91,7 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setDateDebRech(View v) {
-        if(v.getId()== R.id.recupDateDeb) {
+        if (v.getId() == R.id.recupDateDeb) {
             DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -121,67 +121,72 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId()) {
             case R.id.ic_rech:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
                         startActivity(new Intent(RechActivity.this, RechActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_ajout:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
                         startActivity(new Intent(RechActivity.this, AjoutActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_statDiv:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
                         startActivity(new Intent(RechActivity.this, StatDivisionActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_statPisc:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
                         startActivity(new Intent(RechActivity.this, StatPiscineActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_supp:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
                         startActivity(new Intent(RechActivity.this, ListSuppActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_totKm:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
                         startActivity(new Intent(RechActivity.this, TotKMActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
             case R.id.ic_totSal:
                 try {
-                    if(VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
                         startActivity(new Intent(RechActivity.this, TotSalActivity.class));
                         return true;
                     }
-                }catch (ConnexionException ex){
+                } catch (ConnexionException ex) {
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+
+                startActivity(new Intent(RechActivity.this, ConnexionActivity.class));
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }

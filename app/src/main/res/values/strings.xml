@@ -41,4 +41,8 @@
     <string name="msg_AlertDialogInternet">veuillez vour connecter a internet ou réessayez plus tard</string>
     <string name="deconnexion">Déconnexion</string>
     <string name="nbMatch">Nb Match</string>
+    <string name="erreurJSON">Erreur JSON</string>
+    <string name="utilInex">Utilisateur Inexistant</string>
+    <string name="erreurMDP">Mot de passe incorrect</string>
+    <string name="erreurCrypt">Erreur lors du traitement du mot de passe</string>
 </resources>

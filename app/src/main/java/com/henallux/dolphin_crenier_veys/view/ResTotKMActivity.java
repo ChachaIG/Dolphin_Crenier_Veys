@@ -91,6 +91,9 @@ public class ResTotKMActivity extends AppCompatActivity {
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(ResTotKMActivity.this, ConnexionActivity.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

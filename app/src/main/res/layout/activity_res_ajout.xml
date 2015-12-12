@@ -69,7 +69,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="51dp"
                 android:text=""
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:textSize="26dp"
+                android:textColor="#ff6e19"/>
 
             <TextView
                 android:id="@+id/resAjout5"
@@ -90,7 +92,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="51dp"
                 android:text=""
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:textSize="26dp"
+                android:textColor="#ff6e19"/>
         </LinearLayout>
     </ScrollView>
 

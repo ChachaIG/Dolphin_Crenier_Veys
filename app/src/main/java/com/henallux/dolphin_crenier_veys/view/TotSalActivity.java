@@ -194,6 +194,9 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
+            case R.id.ic_deconnect:
+                startActivity(new Intent(TotSalActivity.this, ConnexionActivity.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
