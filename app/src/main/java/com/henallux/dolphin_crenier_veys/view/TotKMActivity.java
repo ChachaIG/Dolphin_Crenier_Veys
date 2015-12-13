@@ -33,8 +33,12 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
     private SimpleDateFormat dateFormat;
     private Button totalBout;
     private Calendar laps;
+    private Calendar dateDeb = Calendar.getInstance();
+    private Calendar dateFin = Calendar.getInstance();
     private SharedPreferences preferences;
     private SharedPreferences.Editor editeur;
+    private Boolean verifDate = true;
+
 
 
     @Override
@@ -54,9 +58,6 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
         totalBout = (Button)findViewById(R.id.buttonTot);
         totalBout.setOnClickListener(this);
         regroupementDesSwitch();
-
-
-
     }
 
     private void regroupementDesSwitch() {
@@ -121,10 +122,70 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
                     dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
                     laps = Calendar.getInstance();
                     laps.set(year, monthOfYear, dayOfMonth);
-                    recupLaps.setText(dateFormat.format(laps.getTime()));
+                    if(saisonSw.isChecked()){
+                        if(laps.get(Calendar.MONTH)> 6 && laps.get(Calendar.MONTH)<9){
+                            Toast.makeText(TotKMActivity.this,R.string.verifDateAjout,Toast.LENGTH_SHORT).show();
+                            verifDate = false;
+                        }
+                    }
+                    if(verifDate)
+                         recupLaps.setText(dateFormat.format(laps.getTime()));
                 }
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
             dialog.show();
+
+            if (anneeeSw.isChecked()) {
+                if(laps != null) {
+                    dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    dateDeb.set(Calendar.DAY_OF_YEAR, 1);
+                    dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    dateFin.set(Calendar.MONTH, 11);
+                    dateFin.set(Calendar.DAY_OF_MONTH, 31);
+                }
+            }
+            if (moisSw.isChecked()) {
+                if (laps != null) {
+                    dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    dateDeb.set(Calendar.MONTH, laps.get(Calendar.MONTH));
+                    dateDeb.set(Calendar.DAY_OF_MONTH, 1);
+                    dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    dateFin.set(Calendar.MONTH, laps.get(Calendar.MONTH));
+                    if (laps.get(Calendar.MONTH) % 2 != 0) {
+                        dateFin.set(Calendar.DAY_OF_MONTH, 30);
+                    } else {
+                        dateFin.set(Calendar.DAY_OF_MONTH, 31);
+                    }
+                    if (laps.get(Calendar.MONTH) == 2)
+                        dateFin.set(Calendar.DAY_OF_MONTH, 28);
+                }
+            }
+            if(saisonSw.isChecked()) {
+                if (laps != null) {
+                    if (laps.get(Calendar.MONTH) >= 0 && laps.get(Calendar.MONTH) <= 5) {
+                        laps.add(Calendar.YEAR, -1);
+                        dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    } else {
+                        dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    }
+                    dateDeb.set(Calendar.MONTH, 8);
+                    dateDeb.set(Calendar.DAY_OF_MONTH, 1);
+
+                    if (laps.get(Calendar.MONTH) >= 8 && laps.get(Calendar.MONTH) <= 11) {
+                        dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    } else {
+                        laps.add(Calendar.YEAR, +1);
+                        dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    }
+                    dateFin.set(Calendar.MONTH, 5);
+                    if (laps.get(Calendar.MONTH) % 2 != 0) {
+                        dateFin.set(Calendar.DAY_OF_MONTH, 30);
+                    } else {
+                        dateFin.set(Calendar.DAY_OF_MONTH, 31);
+                    }
+                    if (laps.get(Calendar.MONTH) == 2)
+                        dateFin.set(Calendar.DAY_OF_MONTH, 28);
+                }
+            }
 
         }
     }
@@ -134,7 +195,6 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
         getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

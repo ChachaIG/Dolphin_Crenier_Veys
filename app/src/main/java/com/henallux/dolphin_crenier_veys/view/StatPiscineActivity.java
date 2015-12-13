@@ -35,6 +35,8 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
     private Calendar laps;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editeur;
+    private Calendar dateDeb = Calendar.getInstance();
+    private Calendar dateFin = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +126,58 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
             dialog.show();
 
+            if (anneeeSw.isChecked()) {
+                if(laps != null) {
+                    dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    dateDeb.set(Calendar.DAY_OF_YEAR, 1);
+                    dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    dateFin.set(Calendar.MONTH, 11);
+                    dateFin.set(Calendar.DAY_OF_MONTH, 31);
+                }
+            }
+            if (moisSw.isChecked()) {
+                if (laps != null) {
+                    dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    dateDeb.set(Calendar.MONTH, laps.get(Calendar.MONTH));
+                    dateDeb.set(Calendar.DAY_OF_MONTH, 1);
+                    dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    dateFin.set(Calendar.MONTH, laps.get(Calendar.MONTH));
+                    if (laps.get(Calendar.MONTH) % 2 != 0) {
+                        dateFin.set(Calendar.DAY_OF_MONTH, 30);
+                    } else {
+                        dateFin.set(Calendar.DAY_OF_MONTH, 31);
+                    }
+                    if (laps.get(Calendar.MONTH) == 2)
+                        dateFin.set(Calendar.DAY_OF_MONTH, 28);
+                }
+            }
+            if(saisonSw.isChecked()) {
+                if (laps != null) {
+                    if (laps.get(Calendar.MONTH) >= 0 && laps.get(Calendar.MONTH) <= 5) {
+                        laps.add(Calendar.YEAR, -1);
+                        dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    } else {
+                        dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    }
+                    dateDeb.set(Calendar.MONTH, 8);
+                    dateDeb.set(Calendar.DAY_OF_MONTH, 1);
+
+                    if (laps.get(Calendar.MONTH) >= 8 && laps.get(Calendar.MONTH) <= 11) {
+                        dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    } else {
+                        laps.add(Calendar.YEAR, +1);
+                        dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+                    }
+                    dateFin.set(Calendar.MONTH, 5);
+                    if (laps.get(Calendar.MONTH) % 2 != 0) {
+                        dateFin.set(Calendar.DAY_OF_MONTH, 30);
+                    } else {
+                        dateFin.set(Calendar.DAY_OF_MONTH, 31);
+                    }
+                    if (laps.get(Calendar.MONTH) == 2)
+                        dateFin.set(Calendar.DAY_OF_MONTH, 28);
+                }
+            }
         }
     }
 
