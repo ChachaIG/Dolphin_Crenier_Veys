@@ -37,17 +37,26 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="25dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/connexion"
         android:id="@+id/connexionBouton"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
         android:layout_alignBottom="@+id/logoDolphin"
-        android:layout_alignLeft="@+id/loginText"
-        android:layout_alignStart="@+id/loginText"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="15dp" />
+        android:layout_alignLeft="@+id/passwordText"
+        android:layout_alignStart="@+id/passwordText" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sauvConnexion"
+        android:id="@+id/sauvConnexion"
+        android:layout_above="@+id/connexionBouton"
+        android:layout_alignLeft="@+id/connexionBouton"
+        android:layout_alignStart="@+id/connexionBouton"
+        android:layout_marginBottom="20dp" />
 </RelativeLayout>

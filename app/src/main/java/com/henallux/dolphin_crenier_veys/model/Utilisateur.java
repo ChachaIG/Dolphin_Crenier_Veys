@@ -27,6 +27,7 @@ public class Utilisateur {
         this.adrLongitude = adrLongitude;
     }
 
+
     public Integer getIdUtilisateur() {
         return idUtilisateur;
     }

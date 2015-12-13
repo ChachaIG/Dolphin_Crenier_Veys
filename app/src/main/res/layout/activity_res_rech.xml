@@ -1,74 +1,104 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.henallux.dolphin_crenier_veys.view.ResRechActivity">
 
     <TextView
+        android:id="@+id/textLabelRech"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recherche"
-        android:id="@+id/textLabelRech"
         android:background="#0098ff"
-        android:textColor="#ffffff"
-        android:textSize="22dp"
         android:gravity="center"
-        android:padding="20dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txtRes1"
-        android:id="@+id/resRech1"
-        android:layout_below="@+id/textLabelRech"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
+        android:padding="20dp"
+        android:text="@string/recherche"
+        android:textColor="#ffffff"
         android:textSize="22dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/resRech2"
-        android:layout_below="@+id/resRech1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollViewAjout"
+        android:layout_below="@+id/textLabelRech">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txtRes2"
-        android:id="@+id/resRech3"
-        android:layout_below="@+id/resRech2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:textSize="22dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtRes1"
+                android:id="@+id/resRech1"
+                android:layout_below="@+id/textLabelRech"
+                android:layout_centerHorizontal="true"
+                android:textSize="22dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/resRech4"
-        android:layout_below="@+id/resRech3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/resRech2"
+                android:layout_below="@+id/resRech1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="22dp"
+                android:textColor="#0098ff" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txtRes3"
-        android:id="@+id/resRech5"
-        android:layout_below="@+id/resRech4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:textSize="22dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtRes2"
+                android:id="@+id/resRech3"
+                android:layout_below="@+id/resRech2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:textSize="22dp"
+                android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/resRech6"
-        android:layout_below="@+id/resRech5"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/resRech4"
+                android:layout_below="@+id/resRech3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="22dp"
+                android:textColor="#0098ff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtRes3"
+                android:id="@+id/resRech5"
+                android:layout_below="@+id/resRech4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
+                android:textSize="22dp"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/resRech6"
+                android:layout_below="@+id/resRech5"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="22dp"
+                android:textColor="#0098ff" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

@@ -1,10 +1,13 @@
 package com.henallux.dolphin_crenier_veys.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexionInternet;
 import com.henallux.dolphin_crenier_veys.R;
@@ -12,10 +15,35 @@ import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
 public class ResRechActivity extends AppCompatActivity {
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editeur;
+    private String nomPiscine;
+    private double cout;
+    private double distance;
+    private TextView resRechPi;
+    private TextView resRechDist;
+    private TextView resRechCout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res_rech);
+        Bundle bundle = this.getIntent().getExtras();
+        nomPiscine = bundle.getString("piscine");
+        cout = bundle.getDouble("cout");
+        distance = bundle.getDouble("distance");
+        preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        editeur = preferences.edit();
+        init();
+    }
+
+    public void init(){
+        resRechPi = (TextView)findViewById(R.id.resRech2);
+        resRechPi.setText(nomPiscine);
+        resRechDist = (TextView)findViewById(R.id.resRech4);
+        resRechDist.setText(""+distance+" KM");
+        resRechCout = (TextView)findViewById(R.id.resRech6);
+        resRechCout.setText(""+cout+" euros");
     }
 
     @Override
@@ -91,6 +119,8 @@ public class ResRechActivity extends AppCompatActivity {
                     ex.msgException();
                 }
             case R.id.ic_deconnect:
+                editeur.clear();
+                editeur.commit();
                 startActivity(new Intent(ResRechActivity.this, ConnexionActivity.class));
                 return true;
 

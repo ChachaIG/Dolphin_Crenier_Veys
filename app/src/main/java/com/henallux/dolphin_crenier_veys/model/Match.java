@@ -1,21 +1,49 @@
 package com.henallux.dolphin_crenier_veys.model;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Match {
 
     private Integer idMatch;
     private Calendar dateMatch;
+    private String dateStr;
     private Boolean secondMatch;
     private Utilisateur util;
     private Integer idUtilisateur;
     private Piscine piscine;
+    private String nomPicine;
     private Integer idPiscine;
     private Division division;
     private Integer idDivision;
+    private String libelleDivision;
     private double distance;
     private double cout;
+
+    public Match(Integer idMatch, String dateStr, Boolean secondMatch, Integer idUtilisateur, Piscine piscine, Division division, double distance, double cout) {
+        this.idMatch = idMatch;
+        this.dateStr = dateStr;
+        this.secondMatch = secondMatch;
+        this.idUtilisateur = idUtilisateur;
+        this.piscine = piscine;
+        this.division = division;
+        this.distance = distance;
+        this.cout = cout;
+    }
+
+    public Match(Integer idMatch, String dateStr, Boolean secondMatch, Integer idUtilisateur, String nomPicine, String libelleDivision, double distance, double cout) {
+        this.idMatch = idMatch;
+        this.dateStr = dateStr;
+        this.secondMatch = secondMatch;
+        this.idUtilisateur = idUtilisateur;
+        this.nomPicine = nomPicine;
+        this.libelleDivision = libelleDivision;
+        this.distance = distance;
+        this.cout = cout;
+    }
 
     public Match(Integer idMatch, Calendar dateMatch, Boolean secondMatch, Utilisateur util, Piscine piscine, Division division, double distance, double cout) {
         this.idMatch = idMatch;
@@ -28,9 +56,9 @@ public class Match {
         this.cout = cout;
     }
 
-    public Match(Integer idMatch, Calendar dateMatch, Boolean secondMatch, Integer idUtilisateur, Integer idPiscine, Integer idDivision, double distance, double cout) {
+    public Match(Integer idMatch, String dateMatch, Boolean secondMatch, Integer idUtilisateur, Integer idPiscine, Integer idDivision, double distance, double cout) {
         this.idMatch = idMatch;
-        this.dateMatch = dateMatch;
+        this.dateStr = dateMatch;
         this.secondMatch = secondMatch;
         this.idUtilisateur = idUtilisateur;
         this.idPiscine = idPiscine;
@@ -47,6 +75,31 @@ public class Match {
         this.idDivision = idDivision;
         this.distance = distance;
         this.cout = cout;
+    }
+
+    public Match(Integer idMatch, Calendar dateMatch, Boolean secondMatch, Integer idUtilisateur, String nomPicine, String libelleDivision, double distance, double cout) {
+        this.idMatch = idMatch;
+        this.dateMatch = dateMatch;
+        this.secondMatch = secondMatch;
+        this.idUtilisateur = idUtilisateur;
+        this.nomPicine = nomPicine;
+        this.libelleDivision = libelleDivision;
+        this.distance = distance;
+        this.cout = cout;
+    }
+
+    public String getDateStr() {
+        return dateStr;
+    }
+
+    public void setDateStr(String dateStr) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        try {
+            dateMatch.setTime(dateFormat.parse(dateStr));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.dateStr = dateStr;
     }
 
     public Integer getIdMatch() {
@@ -135,5 +188,21 @@ public class Match {
 
     public void setCout(double cout) {
         this.cout = cout;
+    }
+
+    public String getNomPicine() {
+        return nomPicine;
+    }
+
+    public void setNomPicine(String nomPicine) {
+        this.nomPicine = nomPicine;
+    }
+
+    public String getLibelleDivision() {
+        return libelleDivision;
+    }
+
+    public void setLibelleDivision(String libelleDivision) {
+        this.libelleDivision = libelleDivision;
     }
 }

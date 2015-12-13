@@ -1,6 +1,8 @@
 package com.henallux.dolphin_crenier_veys.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,11 +23,15 @@ public class ResAjoutActivity extends AppCompatActivity {
     private String distAffichage;
     private TextView cout;
     private String coutAffichage;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editeur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res_ajout);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        editeur = preferences.edit();
         init();
     }
 
@@ -121,6 +127,8 @@ public class ResAjoutActivity extends AppCompatActivity {
                     ex.msgException();
                 }
             case R.id.ic_deconnect:
+                editeur.clear();
+                editeur.commit();
                 startActivity(new Intent(ResAjoutActivity.this, ConnexionActivity.class));
                 return true;
 

@@ -1,6 +1,8 @@
 package com.henallux.dolphin_crenier_veys.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,6 +29,8 @@ import java.util.ArrayList;
 
 public class ResStatDivisionActivity extends AppCompatActivity {
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editeur;
     private ArrayList<Division> dataDiv = new ArrayList<>();
     private ArrayList<String> libelleDivision = new ArrayList<>();
     private TableLayout tableau;
@@ -37,6 +41,8 @@ public class ResStatDivisionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res_stat_division);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        editeur = preferences.edit();
         init();
     }
 
@@ -184,6 +190,8 @@ public class ResStatDivisionActivity extends AppCompatActivity {
                     ex.msgException();
                 }
             case R.id.ic_deconnect:
+                editeur.clear();
+                editeur.commit();
                 startActivity(new Intent(ResStatDivisionActivity.this, ConnexionActivity.class));
                 return true;
         }

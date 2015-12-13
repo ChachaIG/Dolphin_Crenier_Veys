@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -60,12 +62,16 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
     private Match m;
     private ApplicationController ac = new ApplicationController();
     private Intent intent;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editeur;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        editeur = preferences.edit();
         init();
     }
 
@@ -269,6 +275,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                     ex.msgException();
                 }
             case R.id.ic_deconnect:
+                editeur.clear();
+                editeur.commit();
                 startActivity(new Intent(AjoutActivity.this, ConnexionActivity.class));
                 return true;
 
@@ -278,8 +286,6 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
 
 
     private void getDivisions() {
-
-
         JsonArrayRequest getDiv = new JsonArrayRequest(Request.Method.GET, "http://dolphinapp.azurewebsites.net/api/division", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

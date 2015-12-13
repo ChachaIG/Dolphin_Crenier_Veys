@@ -45,4 +45,5 @@
     <string name="utilInex">Utilisateur Inexistant</string>
     <string name="erreurMDP">Mot de passe incorrect</string>
     <string name="erreurCrypt">Erreur lors du traitement du mot de passe</string>
+    <string name="sauvConnexion">Se souvenir de moi</string>
 </resources>

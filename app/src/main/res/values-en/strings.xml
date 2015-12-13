@@ -42,4 +42,5 @@
     <string name="utilInex">Inexisting user</string>
     <string name="erreurMDP">wrong password</string>
     <string name="erreurCrypt">Error during password treatment </string>
+    <string name="sauvConnexion">Remember me</string>
 </resources>

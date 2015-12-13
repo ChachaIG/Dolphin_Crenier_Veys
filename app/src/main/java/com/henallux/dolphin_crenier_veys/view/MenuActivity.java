@@ -1,6 +1,8 @@
 package com.henallux.dolphin_crenier_veys.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,19 +29,24 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
     private Utilisateur util;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editeur;
+    private Double adrLat;
+    private Double adrLon;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        editeur = preferences.edit();
         init();
     }
 
     public void init() {
-        Bundle bundle = this.getIntent().getExtras();
-        util = new Utilisateur(bundle.getInt("idUtil"), bundle.getString("prenomUtil"), bundle.getDouble("adrLat"), bundle.getDouble("adrLong"));
-        Toast.makeText(MenuActivity.this, getString(R.string.bienvenueMess) + " " + util.getPrenom(), Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(MenuActivity.this, getString(R.string.bienvenueMess) + " " + preferences.getString("prenomUtil",""), Toast.LENGTH_SHORT).show();
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
         prepareListData();
         listAdaptateur = new ExpandableListAdapter(this, listDataHeader, listDataChild);
@@ -244,6 +251,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                     ex.msgException();
                 }
             case R.id.ic_deconnect:
+                editeur.clear();
+                editeur.commit();
                 startActivity(new Intent(MenuActivity.this, ConnexionActivity.class));
                 return true;
 

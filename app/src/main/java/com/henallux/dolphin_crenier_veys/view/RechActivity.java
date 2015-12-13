@@ -2,6 +2,8 @@ package com.henallux.dolphin_crenier_veys.view;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,11 +33,16 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
     private long tpsDateDeb;
     private Calendar nouvDateFin;
     private long tpsDateFin;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editeur;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rech);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        editeur = preferences.edit();
         init();
     }
 
@@ -55,8 +62,12 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
         setDateFinRech(v);
 
         if (v.getId() == R.id.boutonRech) {
-            if (nouvDateDeb != null && nouvDateFin != null)
-                startActivity(new Intent(RechActivity.this, ListRechActivity.class));
+            if (nouvDateDeb != null && nouvDateFin != null) {
+                intent = new Intent(RechActivity.this, ListRechActivity.class);
+                intent.putExtra("dateDeb",dateFormatDeb.format(nouvDateDeb.getTime()));
+                intent.putExtra("dateFin",dateFormatFin.format(nouvDateFin.getTime()));
+                startActivity(intent);
+            }
             else
                 Toast.makeText(RechActivity.this, R.string.verifDateAjout, Toast.LENGTH_SHORT).show();
         }
@@ -76,7 +87,8 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
 
                     nouvDateFin.set(year, monthOfYear, dayOfMonth);
 
-                    tpsDateDeb = nouvDateDeb.getTimeInMillis();
+                    if(nouvDateDeb != null)
+                         tpsDateDeb = nouvDateDeb.getTimeInMillis();
                     tpsDateFin = nouvDateFin.getTimeInMillis();
 
                     if (tpsDateFin > tpsDateDeb)
@@ -102,7 +114,14 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
 
                     nouvDateDeb.set(year, monthOfYear, dayOfMonth);
 
-                    recupDateDeb.setText(dateFormatDeb.format(nouvDateDeb.getTime()));
+                    if(nouvDateFin != null)
+                        tpsDateFin = nouvDateFin.getTimeInMillis();
+                    tpsDateDeb = nouvDateDeb.getTimeInMillis();
+
+                    if (tpsDateDeb < tpsDateFin || nouvDateFin == null)
+                        recupDateDeb.setText(dateFormatDeb.format(nouvDateDeb.getTime()));
+                    else
+                        Toast.makeText(RechActivity.this, R.string.verifDateAjout, Toast.LENGTH_LONG).show();
 
                 }
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
@@ -183,7 +202,8 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
                     ex.msgException();
                 }
             case R.id.ic_deconnect:
-
+                editeur.clear();
+                editeur.commit();
                 startActivity(new Intent(RechActivity.this, ConnexionActivity.class));
                 return true;
 

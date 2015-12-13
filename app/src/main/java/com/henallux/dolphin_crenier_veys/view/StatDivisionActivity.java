@@ -2,6 +2,8 @@ package com.henallux.dolphin_crenier_veys.view;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,11 +33,15 @@ public class StatDivisionActivity extends AppCompatActivity implements View.OnCl
     private SimpleDateFormat dateFormat;
     private Button totalBout;
     private Calendar laps;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editeur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat_division);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        editeur = preferences.edit();
         init();
     }
 
@@ -192,6 +198,8 @@ public class StatDivisionActivity extends AppCompatActivity implements View.OnCl
                     ex.msgException();
                 }
             case R.id.ic_deconnect:
+                editeur.clear();
+                editeur.commit();
                 startActivity(new Intent(StatDivisionActivity.this, ConnexionActivity.class));
                 return true;
         }
