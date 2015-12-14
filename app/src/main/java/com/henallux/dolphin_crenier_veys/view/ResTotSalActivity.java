@@ -12,10 +12,18 @@ import com.henallux.dolphin_crenier_veys.InternetConnection.VerificationConnexio
 import com.henallux.dolphin_crenier_veys.R;
 import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class ResTotSalActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editeur;
+    private Calendar dateDeb = Calendar.getInstance();
+    private Calendar dateFin = Calendar.getInstance();
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,17 @@ public class ResTotSalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_res_tot_sal);
         preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
         editeur = preferences.edit();
+        init();
+    }
+
+    public void init(){
+        Bundle bundle = getIntent().getExtras();
+        try {
+            dateDeb.setTime(dateFormat.parse(bundle.getString("dateDeb")));
+            dateFin.setTime(dateFormat.parse(bundle.getString("dateFin")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

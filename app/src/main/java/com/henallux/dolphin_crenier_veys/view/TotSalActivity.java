@@ -41,6 +41,7 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
     private boolean verifDate = false;
     private int switchSelect;
     private ApplicationController ac;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +99,7 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if(isChecked){
+                if (isChecked) {
                     anneeeSw.setChecked(false);
                     moisSw.setChecked(false);
                 }
@@ -109,11 +110,15 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
 
     public void onClick(View v) {
         setLapsTemps(v);
-        if(v.getId() == R.id.buttonTot){
-            if(laps != null)
-                startActivity(new Intent(TotSalActivity.this, ResTotSalActivity.class));
+        if (v.getId() == R.id.buttonTot) {
+            if (laps != null) {
+                intent = new Intent(TotSalActivity.this, ResTotKMActivity.class);
+                intent.putExtra("dateDeb", dateFormat.format(dateDeb.getTime()));
+                intent.putExtra("dateDeb", dateFormat.format(dateFin.getTime()));
+                startActivity(intent);
+            }
             else
-                Toast.makeText(TotSalActivity.this,R.string.verifDateAjout,Toast.LENGTH_SHORT).show();
+            Toast.makeText(TotSalActivity.this, R.string.verifDateAjout, Toast.LENGTH_SHORT).show();
         }
     }
 

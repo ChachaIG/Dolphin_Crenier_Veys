@@ -111,8 +111,23 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
         if(v.getId() == R.id.buttonTot){
             if(laps != null) {
                 intent = new Intent(TotKMActivity.this, ResTotKMActivity.class);
+                if (anneeeSw.isChecked()) {
+                    switchSelect = 1;
+                    dateDeb = ac.getDateDeb(laps, switchSelect);
+                    dateFin = ac.getDateFin(laps, switchSelect);
+                }
+                if (moisSw.isChecked()) {
+                    switchSelect = 2;
+                    dateDeb = ac.getDateDeb(laps, switchSelect);
+                    dateFin = ac.getDateFin(laps, switchSelect);
+                }
+                if (saisonSw.isChecked()) {
+                    switchSelect = 3;
+                    dateDeb = ac.getDateDeb(laps, switchSelect);
+                    dateFin = ac.getDateFin(laps, switchSelect);
+                }
                 intent.putExtra("dateDeb",dateFormat.format(dateDeb.getTime()));
-                intent.putExtra("dateDeb",dateFormat.format(dateFin.getTime()));
+                intent.putExtra("dateFin", dateFormat.format(dateFin.getTime()));
                 startActivity(intent);
             }
             else
@@ -140,23 +155,6 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
                 }
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
             dialog.show();
-
-            if (anneeeSw.isChecked()) {
-                switchSelect = 1;
-                dateDeb = ac.getDateDeb(laps, switchSelect);
-                dateFin = ac.getDateFin(laps, switchSelect);
-            }
-            if (moisSw.isChecked()) {
-                switchSelect = 2;
-                dateDeb = ac.getDateDeb(laps, switchSelect);
-                dateFin = ac.getDateFin(laps, switchSelect);
-            }
-            if(saisonSw.isChecked()) {
-                switchSelect = 3;
-                dateDeb = ac.getDateDeb(laps, switchSelect);
-                dateFin = ac.getDateFin(laps, switchSelect);
-            }
-
         }
     }
 

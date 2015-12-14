@@ -41,6 +41,7 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
     private boolean verifDate = false;
     private int switchSelect;
     private ApplicationController ac;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if(isChecked){
+                if (isChecked) {
                     anneeeSw.setChecked(false);
                     moisSw.setChecked(false);
                 }
@@ -109,8 +110,12 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         setLapsTemps(v);
         if(v.getId() == R.id.buttonTot){
-            if(laps != null)
-                 startActivity(new Intent(StatPiscineActivity.this, ResStatPiscineActivity.class));
+            if(laps != null) {
+                intent = new Intent(StatPiscineActivity.this, ResTotKMActivity.class);
+                intent.putExtra("dateDeb", dateFormat.format(dateDeb.getTime()));
+                intent.putExtra("dateDeb", dateFormat.format(dateFin.getTime()));
+                startActivity(intent);
+            }
             else
                 Toast.makeText(StatPiscineActivity.this,R.string.verifDateAjout,Toast.LENGTH_SHORT).show();
         }

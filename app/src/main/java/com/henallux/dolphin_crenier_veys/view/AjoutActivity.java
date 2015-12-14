@@ -41,7 +41,9 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class AjoutActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -61,6 +63,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
     private Boolean estUnSecondMatch;
     private Switch secondMatch;
     private Match m;
+    private Match matchAjout;
     private ApplicationController ac = new ApplicationController();
     private Intent intent;
     private SharedPreferences preferences;
@@ -123,7 +126,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                         intent.putExtra("NomPiscine", selectPiscine.getNom());
                         intent.putExtra("AdrLat", selectPiscine.getAdrLatitude());
                         intent.putExtra("AdrLon", selectPiscine.getAdrLongitutde());
-                        if (nouvDate != null) {
+                        if (nouvDate != null && selectDivision != null && selectPiscine != null) {
                             m = new Match();
                             getDistance(selectPiscine);
                         } else {
@@ -150,7 +153,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         alert.show();
     }
 
-    private void getDistance(Piscine selectPiscine) {
+    private void getDistance(final Piscine selectPiscine) {
         url ="http://maps.google.com/maps/api/directions/json?origin="+util.getAdrLatitude()+","+util.getAdrLongitude()+"&destination="+selectPiscine.getAdrLatitude()+","+selectPiscine.getAdrLongitutde();
         JsonObjectRequest getDistance = new JsonObjectRequest(Request.Method.GET,url, new Response.Listener<JSONObject>(){
             @Override
@@ -159,10 +162,16 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                     distance = response.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(0).getJSONObject("distance").getDouble("value");
                     m.setDistance(distance / 1000);
                     m.setDivision(selectDivision);
+                    m.setIdDivision(selectDivision.getIdDivision());
+                    m.setIdPiscine(selectPiscine.getId());
+                    m.setIdUtilisateur(util.getIdUtilisateur());
+                    m.setDateMatch(nouvDate);
+                    m.setSecondMatch(estUnSecondMatch);
                     cout =  ac.getCoutMatch(m);
                     m.setCout(cout);
                     intent.putExtra("distance",m.getDistance());
                     intent.putExtra("cout",m.getCout());
+                   // ajouterMatch(m);
                     startActivity(intent);startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -351,6 +360,38 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
 
         Singleton.getInstance(this).addToRequestQueue(getLieu);
     }
+
+    private void ajouterMatch(Match m) {
+        url = "http://dolphinapp.azurewebsites.net/api/match";
+        matchAjout = new Match(m.getIdMatch(), m.getDateMatch(), m.getSecondMatch(), m.getIdUtilisateur(), m.getIdDivision(), m.getIdPiscine(), m.getDistance(), m.getCout());
+        JsonArrayRequest ajoutMatch = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("DATE_MATCH", dateFormat.format(matchAjout.getDateMatch().getTime()));
+                params.put("SECOND_MATCH",matchAjout.getSecondMatch().toString());
+                params.put("DISTANCE", ""+matchAjout.getDistance());
+                params.put("COUT", ""+matchAjout.getCout());
+                params.put("ID_PISCINE", ""+matchAjout.getIdPiscine());
+                params.put("ID_DIVISION", ""+matchAjout.getIdDivision());
+                params.put("ID_UTILISATEUR", ""+matchAjout.getIdUtilisateur());
+
+                return params;
+            }
+        };
+            Singleton.getInstance(AjoutActivity.this).addToRequestQueue(ajoutMatch);
+        }
+
 }
 
 

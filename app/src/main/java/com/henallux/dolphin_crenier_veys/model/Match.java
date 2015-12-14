@@ -26,6 +26,17 @@ public class Match {
     public Match() {
     }
 
+    public Match(Integer idMatch, Calendar dateMatch, Boolean secondMatch, Integer idUtilisateur, Integer idDivision, Integer idPiscine, double distance, double cout) {
+        this.idMatch = idMatch;
+        this.dateMatch = dateMatch;
+        this.secondMatch = secondMatch;
+        this.idUtilisateur = idUtilisateur;
+        this.idDivision = idDivision;
+        this.idPiscine = idPiscine;
+        this.distance = distance;
+        this.cout = cout;
+    }
+
     public Match(Integer idMatch, String dateStr, Boolean secondMatch, Integer idUtilisateur, String nomPicine, String libelleDivision, double distance, double cout) {
         this.idMatch = idMatch;
         this.dateStr = dateStr;

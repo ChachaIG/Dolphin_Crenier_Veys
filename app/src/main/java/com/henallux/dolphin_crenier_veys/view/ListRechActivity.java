@@ -126,7 +126,7 @@ public class ListRechActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Match m = new Match(0,null,false,0,0,0,0,0);
+                Match m = new Match();
                 matchs.add(m);
             }
         });

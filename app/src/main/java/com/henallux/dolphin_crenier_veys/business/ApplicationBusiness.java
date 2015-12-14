@@ -53,34 +53,35 @@ public class ApplicationBusiness {
     public Calendar getDateDeb(Calendar laps, int switchSelect) {
         Calendar dateDeb = Calendar.getInstance();
         if (switchSelect == 1) {
+            dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
+            dateDeb.set(Calendar.DAY_OF_YEAR, 1);
+
+        }
+        if (switchSelect == 2) {
             if (laps != null) {
                 dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
-                dateDeb.set(Calendar.DAY_OF_YEAR, 1);
-
+                dateDeb.set(Calendar.MONTH, laps.get(Calendar.MONTH));
+                dateDeb.set(Calendar.DAY_OF_MONTH, 1);
             }
-            if (switchSelect == 2){
-                if (laps != null) {
+        }
+        if (switchSelect == 3) {
+            if (laps != null) {
+                if (laps.get(Calendar.MONTH) >= 0 && laps.get(Calendar.MONTH) <= 5) {
+                    laps.add(Calendar.YEAR, -1);
                     dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
-                    dateDeb.set(Calendar.MONTH, laps.get(Calendar.MONTH));
-                    dateDeb.set(Calendar.DAY_OF_MONTH, 1);
+                } else {
+                    dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
                 }
-            }
-            if (switchSelect == 3) {
-                if (laps != null) {
-                    if (laps.get(Calendar.MONTH) >= 0 && laps.get(Calendar.MONTH) <= 5) {
-                        laps.add(Calendar.YEAR, -1);
-                        dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
-                    } else {
-                        dateDeb.set(Calendar.YEAR, laps.get(Calendar.YEAR));
-                    }
-                    dateDeb.set(Calendar.MONTH, 8);
-                    dateDeb.set(Calendar.DAY_OF_MONTH, 1);
+                dateDeb.set(Calendar.MONTH, 8);
+                dateDeb.set(Calendar.DAY_OF_MONTH, 1);
 
-                }
             }
         }
         return dateDeb;
     }
+
+
+
 
     public Calendar getDateFin(Calendar laps, int switchSelect){
         Calendar dateFin = Calendar.getInstance();

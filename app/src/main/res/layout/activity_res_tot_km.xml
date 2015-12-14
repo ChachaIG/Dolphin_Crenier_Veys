@@ -14,4 +14,25 @@
         android:gravity="center"
         android:padding="20dp" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollViewAjout"
+        android:layout_below="@+id/textLabelTotKM">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:weightSum="1">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="430dp"
+                android:id="@+id/listViewRes" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
