@@ -11,6 +11,7 @@ import com.henallux.dolphin_crenier_veys.model.Piscine;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ApplicationController {
 
@@ -25,6 +26,18 @@ public class ApplicationController {
 
     public String cryptageMDP(String mdp, Context ctx) throws CryptageMotDePasseException, NoSuchAlgorithmException {
        return business.cryptageMDP(mdp,ctx);
+    }
+
+    public Calendar getDateDeb(Calendar laps, int switchSelect){
+        return business.getDateDeb(laps, switchSelect);
+    }
+
+    public Calendar getDateFin(Calendar laps, int switchSelect){
+        return business.getDateFin(laps, switchSelect);
+    }
+
+    public double getCoutMatch(Match m){
+        return business.getCoutMatch(m);
     }
 
 }

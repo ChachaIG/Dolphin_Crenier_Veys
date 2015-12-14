@@ -23,15 +23,7 @@ public class Match {
     private double distance;
     private double cout;
 
-    public Match(Integer idMatch, String dateStr, Boolean secondMatch, Integer idUtilisateur, Piscine piscine, Division division, double distance, double cout) {
-        this.idMatch = idMatch;
-        this.dateStr = dateStr;
-        this.secondMatch = secondMatch;
-        this.idUtilisateur = idUtilisateur;
-        this.piscine = piscine;
-        this.division = division;
-        this.distance = distance;
-        this.cout = cout;
+    public Match() {
     }
 
     public Match(Integer idMatch, String dateStr, Boolean secondMatch, Integer idUtilisateur, String nomPicine, String libelleDivision, double distance, double cout) {
@@ -45,16 +37,17 @@ public class Match {
         this.cout = cout;
     }
 
-    public Match(Integer idMatch, Calendar dateMatch, Boolean secondMatch, Utilisateur util, Piscine piscine, Division division, double distance, double cout) {
-        this.idMatch = idMatch;
-        this.dateMatch = dateMatch;
+    public Match( String dateStr, Boolean secondMatch, Integer idUtilisateur, String nomPicine, String libelleDivision, double distance, double cout) {
+
+        this.dateStr = dateStr;
         this.secondMatch = secondMatch;
-        this.util = util;
-        this.piscine = piscine;
-        this.division = division;
+        this.idUtilisateur = idUtilisateur;
+        this.nomPicine = nomPicine;
+        this.libelleDivision = libelleDivision;
         this.distance = distance;
         this.cout = cout;
     }
+
 
     public Match(Integer idMatch, String dateMatch, Boolean secondMatch, Integer idUtilisateur, Integer idPiscine, Integer idDivision, double distance, double cout) {
         this.idMatch = idMatch;
@@ -67,26 +60,7 @@ public class Match {
         this.cout = cout;
     }
 
-    public Match(Calendar dateMatch, Boolean secondMatch, Integer idUtilisateur, Integer idPiscine, Integer idDivision, double distance, double cout) {
-        this.dateMatch = dateMatch;
-        this.secondMatch = secondMatch;
-        this.idUtilisateur = idUtilisateur;
-        this.idPiscine = idPiscine;
-        this.idDivision = idDivision;
-        this.distance = distance;
-        this.cout = cout;
-    }
 
-    public Match(Integer idMatch, Calendar dateMatch, Boolean secondMatch, Integer idUtilisateur, String nomPicine, String libelleDivision, double distance, double cout) {
-        this.idMatch = idMatch;
-        this.dateMatch = dateMatch;
-        this.secondMatch = secondMatch;
-        this.idUtilisateur = idUtilisateur;
-        this.nomPicine = nomPicine;
-        this.libelleDivision = libelleDivision;
-        this.distance = distance;
-        this.cout = cout;
-    }
 
     public String getDateStr() {
         return dateStr;

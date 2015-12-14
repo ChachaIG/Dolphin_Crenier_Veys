@@ -32,6 +32,7 @@ import com.henallux.dolphin_crenier_veys.exception.ConnexionException;
 import com.henallux.dolphin_crenier_veys.model.Division;
 import com.henallux.dolphin_crenier_veys.model.Match;
 import com.henallux.dolphin_crenier_veys.model.Piscine;
+import com.henallux.dolphin_crenier_veys.model.Utilisateur;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +65,12 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
     private Intent intent;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editeur;
+    private Utilisateur util;
+    private String url;
+    private double distance;
+    private double cout;
+    private Division selectDivision;
+    private Piscine selectPiscine;
 
 
     @Override
@@ -77,6 +84,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
 
 
     public void init() {
+        util = new Utilisateur(preferences.getInt("idUtil",0),preferences.getString("prenomUtil", ""),Double.parseDouble(preferences.getString("adrLat", "")),Double.parseDouble(preferences.getString("adrLon","")));
         ApplicationController ac = new ApplicationController();
         try {
             if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
@@ -87,8 +95,6 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         } catch (ConnexionException ex) {
             ex.msgException();
         }
-
-
         recupDate = (TextView) findViewById(R.id.recupDate);
         recupDate.setHint(R.string.indiceDate);
         recupDate.setOnClickListener(this);
@@ -96,9 +102,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         ajoutBout.setOnClickListener(this);
         secondMatch = (Switch) findViewById(R.id.secondMatch);
         secondMatch.setChecked(false);
-
     }
-
 
     public void onClick(View v) {
         switch (v.getId()) {
@@ -108,76 +112,69 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
             case R.id.ajoutMatchBouton:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
-
-                        //"DISTANCE","COUT","DATE_MATCH","SECOND_MATCH","ID_PISCINE","ID_UTILISATEUR","ID_DIVISION"
                         estUnSecondMatch = secondMatch.isChecked();
                         Integer idLieu = recupLieu.getSelectedItemPosition();
-                        final String idLieuJSON = "" + idLieu + "";
-                        Piscine selectPiscine = dataLieu.get(idLieu);
+                        selectPiscine = dataLieu.get(idLieu);
                         Integer idDiv = recupDiv.getSelectedItemPosition();
-                        final String idDivJson = "" + idDiv + "";
-                        ///!\ A MODIFIER idUser EST UN TEST /!\\\
-                        Integer idUser = 1;
-                        Division selectDivision = dataDiv.get(idDiv);
+                        selectDivision = dataDiv.get(idDiv);
                         intent = new Intent(AjoutActivity.this, ResAjoutActivity.class);
+                        intent.putExtra("NomPiscine", selectPiscine.getNom());
                         intent.putExtra("IdLieu", selectPiscine.getId());
                         intent.putExtra("NomPiscine", selectPiscine.getNom());
                         intent.putExtra("AdrLat", selectPiscine.getAdrLatitude());
                         intent.putExtra("AdrLon", selectPiscine.getAdrLongitutde());
                         if (nouvDate != null) {
-                            m = new Match(nouvDate, estUnSecondMatch, idLieu, idDiv, idUser, 89.23, 59.23);
-                            JSONObject jsonObject = new JSONObject();
-                            try {
-                                jsonObject.put("DATE_MATCH", m.getDateMatch());
-                                jsonObject.put("SECOND_MATCH", m.getSecondMatch());
-                                jsonObject.put("ID_PISCINE", m.getIdPiscine());
-                                jsonObject.put("ID_DIVISION", m.getIdDivision());
-                                jsonObject.put("ID_UTILISATEUR", m.getIdUtilisateur());
-                                jsonObject.put("COUT", m.getCout());
-                                jsonObject.put("DISTANCE", m.getDistance());
-                                intent.putExtra("DISTANCE", m.getDistance());
-                                intent.putExtra("COUT",m.getCout());
-                                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://dolphinapp.azurewebsites.net/api/match?newMatch=" + jsonObject,
-                                        jsonObject,
-                                        new Response.Listener<JSONObject>() {
-                                            @Override
-                                            public void onResponse(JSONObject response) {
-                                               // startActivity(intent);
-                                            }
-                                        }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        error.printStackTrace();
-                                    }
-                                });
-                                Singleton.getInstance(AjoutActivity.this).addToRequestQueue(jsonObjectRequest);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                            startActivity(intent);
-
-
+                            m = new Match();
+                            getDistance(selectPiscine);
                         } else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                            builder.setTitle(this.getResources().getString(R.string.verifDateAjout));
-                            builder.setMessage(this.getResources().getString(R.string.verifDateAjout))
-                                    .setCancelable(false)
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                        }
-                                    });
-                            AlertDialog alert = builder.create();
-                            alert.show();
+                            alertDialogErreurDate();
                         }
-
-                        break;
                     }
-
                 } catch (ConnexionException ex) {
                     ex.msgException();
                 }
+                break;
         }
+    }
+
+    private void alertDialogErreurDate() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(this.getResources().getString(R.string.verifDateAjout));
+        builder.setMessage(this.getResources().getString(R.string.verifDateAjout))
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void getDistance(Piscine selectPiscine) {
+        url ="http://maps.google.com/maps/api/directions/json?origin="+util.getAdrLatitude()+","+util.getAdrLongitude()+"&destination="+selectPiscine.getAdrLatitude()+","+selectPiscine.getAdrLongitutde();
+        JsonObjectRequest getDistance = new JsonObjectRequest(Request.Method.GET,url, new Response.Listener<JSONObject>(){
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    distance = response.getJSONArray("routes").getJSONObject(0).getJSONArray("legs").getJSONObject(0).getJSONObject("distance").getDouble("value");
+                    m.setDistance(distance / 1000);
+                    m.setDivision(selectDivision);
+                    cout =  ac.getCoutMatch(m);
+                    m.setCout(cout);
+                    intent.putExtra("distance",m.getDistance());
+                    intent.putExtra("cout",m.getCout());
+                    startActivity(intent);startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        Singleton.getInstance(this).addToRequestQueue(getDistance);
     }
 
     private void setDateMatchAjout() {
@@ -355,3 +352,5 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         Singleton.getInstance(this).addToRequestQueue(getLieu);
     }
 }
+
+

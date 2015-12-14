@@ -23,6 +23,11 @@ public class ResTotKMActivity extends AppCompatActivity {
         setContentView(R.layout.activity_res_tot_km);
         preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
         editeur = preferences.edit();
+        init();
+    }
+
+    public void init(){
+       Bundle bundle = getIntent().getExtras();
     }
 
     @Override

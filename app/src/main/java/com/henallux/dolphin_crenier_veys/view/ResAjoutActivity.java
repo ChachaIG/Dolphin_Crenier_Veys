@@ -45,11 +45,11 @@ public class ResAjoutActivity extends AppCompatActivity {
         resPiscine = (TextView) findViewById(R.id.resAjout2);
         resPiscine.setText(piscine.getNom());
         distance = (TextView)findViewById(R.id.resAjout4);
-        distAffichage = ""+bundle.getDouble("DISTANCE")+" KM";
+        distAffichage = ""+bundle.getDouble("distance")+" KM";
         distance.setText(distAffichage);
         cout=(TextView)findViewById(R.id.resAjout6);
-        coutAffichage = ""+bundle.getDouble("COUT")+"euros";
-        cout.setText(coutAffichage);
+        coutAffichage = ""+bundle.getDouble("cout");
+        cout.setText(coutAffichage.substring(0, 5) + " euros");
 
 
     }
