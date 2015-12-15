@@ -74,6 +74,9 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
     private double cout;
     private Division selectDivision;
     private Piscine selectPiscine;
+    private SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+    private String dateMAjoutStr;
+    private String dateMAjoutStr2;
 
 
     @Override
@@ -87,7 +90,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
 
 
     public void init() {
-        util = new Utilisateur(preferences.getInt("idUtil",0),preferences.getString("prenomUtil", ""),Double.parseDouble(preferences.getString("adrLat", "")),Double.parseDouble(preferences.getString("adrLon","")));
+        util = new Utilisateur(preferences.getInt("IdUtil",0),preferences.getString("prenomUtil", ""),Double.parseDouble(preferences.getString("adrLat", "")),Double.parseDouble(preferences.getString("adrLon","")));
+        Toast.makeText(AjoutActivity.this,util.getIdUtilisateur()+util.getPrenom(),Toast.LENGTH_LONG).show();
         ApplicationController ac = new ApplicationController();
         try {
             if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
@@ -169,9 +173,9 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                     m.setSecondMatch(estUnSecondMatch);
                     cout =  ac.getCoutMatch(m);
                     m.setCout(cout);
-                    intent.putExtra("distance",m.getDistance());
+                    intent.putExtra("distance", m.getDistance());
                     intent.putExtra("cout",m.getCout());
-                   // ajouterMatch(m);
+                    ajouterMatch(m);
                     startActivity(intent);startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -362,36 +366,70 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void ajouterMatch(Match m) {
-        url = "http://dolphinapp.azurewebsites.net/api/match";
-        matchAjout = new Match(m.getIdMatch(), m.getDateMatch(), m.getSecondMatch(), m.getIdUtilisateur(), m.getIdDivision(), m.getIdPiscine(), m.getDistance(), m.getCout());
-        JsonArrayRequest ajoutMatch = new JsonArrayRequest(Request.Method.POST, url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
+        /* public void addUserToDb(final CreateAnAccountNext context, final Personne personneAEnregistre) {
+        JSONObject companyJsonObject = new JSONObject();
+        JSONObject algoJsonObjoect = new JSONObject();
+        JSONObject personneJsonObject = new JSONObject();
+        try{
+            companyJsonObject.put("IdCompany",0);
+            companyJsonObject.put("NameCompany",personneAEnregistre.getEntreprise().getNom());
+            algoJsonObjoect.put("IdAlgorithme",0);
+            algoJsonObjoect.put("Type", personneAEnregistre.getTypeAlgo().getNom());
+            personneJsonObject.put("Company",companyJsonObject);
+            personneJsonObject.put("Email",personneAEnregistre.getEmail());
+            personneJsonObject.put("FirstName",personneAEnregistre.getFirstName());
+            personneJsonObject.put("KeyLength",personneAEnregistre.getSizeOfKey());
+            personneJsonObject.put("KeyUsed",personneAEnregistre.getKey());
+            personneJsonObject.put("LastName",personneAEnregistre.getName());
+            personneJsonObject.put("Password",personneAEnregistre.getPassword());
+            personneJsonObject.put("TypeAlgo",algoJsonObjoect);
 
-            }
-        }, new Response.ErrorListener() {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://keyregisterweb.azurewebsites.net/api/people/addPerson",
+                    personneJsonObject,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            context.endAddPers(personneAEnregistre);
+                        }
+                    }, new ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    error.getCause();
+                    context.stopAnim();
+                }
+            });*/
+
+        matchAjout = new Match(m.getIdMatch(), m.getDateMatch(), m.getSecondMatch(), m.getIdUtilisateur(), m.getIdDivision(), m.getIdPiscine(), m.getDistance(), m.getCout());
+        JSONObject matchJsonObject = new JSONObject();
+        try {
+            dateMAjoutStr = dateFormat2.format(matchAjout.getDateMatch().getTime());
+            matchJsonObject.put("DATE_MATCH", dateMAjoutStr);
+            matchJsonObject.put("SECOND_MATCH", matchAjout.getSecondMatch());
+            matchJsonObject.put("DISTANCE", matchAjout.getDistance());
+            matchJsonObject.put("COUT", matchAjout.getCout());
+            matchJsonObject.put("ID_PISCINE", matchAjout.getIdPiscine());
+            matchJsonObject.put("ID_DIVISION", matchAjout.getIdDivision());
+            matchJsonObject.put("ID_UTILISATEUR", matchAjout.getIdUtilisateur());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest ajoutMatch = new JsonObjectRequest(Request.Method.POST, "http://dolphinapp.azurewebsites.net/api/match",
+                matchJsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                error.printStackTrace();
+                error.getCause();
             }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("DATE_MATCH", dateFormat.format(matchAjout.getDateMatch().getTime()));
-                params.put("SECOND_MATCH",matchAjout.getSecondMatch().toString());
-                params.put("DISTANCE", ""+matchAjout.getDistance());
-                params.put("COUT", ""+matchAjout.getCout());
-                params.put("ID_PISCINE", ""+matchAjout.getIdPiscine());
-                params.put("ID_DIVISION", ""+matchAjout.getIdDivision());
-                params.put("ID_UTILISATEUR", ""+matchAjout.getIdUtilisateur());
-
-                return params;
-            }
-        };
-            Singleton.getInstance(AjoutActivity.this).addToRequestQueue(ajoutMatch);
-        }
-
+        });
+        Singleton.getInstance(AjoutActivity.this).addToRequestQueue(ajoutMatch);
+    }
 }
 
 

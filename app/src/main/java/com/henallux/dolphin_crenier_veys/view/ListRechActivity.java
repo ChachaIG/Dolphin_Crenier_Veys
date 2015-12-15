@@ -108,14 +108,13 @@ public class ListRechActivity extends AppCompatActivity {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        /*"ID_MATCH":1,"DATE_MATCH":"2015-10-16T00:00:00","SECOND_MATCH":false,"DISTANCE":100.12,"COUT":53.45,"ID_PISCINE":1,"ID_DIVISION":5,"ID_UTILISATEUR":1}]*/
-                        Match m = new Match(res.getInt("ID_MATCH"),date, res.getBoolean("SECOND_MATCH"),res.getInt("ID_UTILISATEUR"),res.getJSONObject("piscine").getString("NOM_PISCINE"),res.getJSONObject("division").getString("LIBELLE_DIVISION"),res.getDouble("DISTANCE"),res.getDouble("COUT"));
+                        Match m = new Match(res.getInt("ID_MATCH"),res.getString("DATE_MATCH").substring(0,10), res.getBoolean("SECOND_MATCH"),res.getInt("ID_UTILISATEUR"),res.getJSONObject("piscine").getString("NOM_PISCINE"),res.getJSONObject("division").getString("LIBELLE_DIVISION"),res.getDouble("DISTANCE"),res.getDouble("COUT"));
                         matchs.add(m);
                         m.setDateMatch(dateMatch);
                     }
                     for (Match m : matchs) {
                         if(m.getDateMatch().after(dateDeb) && m.getDateMatch().before(dateFin))
-                            matchsAffichage.add(date.substring(0, 10)+" / "+m.getLibelleDivision()+" / "+m.getNomPicine());
+                            matchsAffichage.add(m.getDateStr()+" / "+m.getLibelleDivision()+" / "+m.getNomPicine());
                     }
                     ArrayAdapter<String> adaptaterRech = new ArrayAdapter<String>(ListRechActivity.this, android.R.layout.simple_spinner_item, matchsAffichage);
                     listRech.setAdapter(adaptaterRech);

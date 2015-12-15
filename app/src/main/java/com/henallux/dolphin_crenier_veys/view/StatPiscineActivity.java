@@ -38,7 +38,7 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
     private SharedPreferences.Editor editeur;
     private Calendar dateDeb = Calendar.getInstance();
     private Calendar dateFin = Calendar.getInstance();
-    private boolean verifDate = false;
+    private boolean verifDate = true;
     private int switchSelect;
     private ApplicationController ac;
     private Intent intent;
@@ -111,9 +111,27 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
         setLapsTemps(v);
         if(v.getId() == R.id.buttonTot){
             if(laps != null) {
-                intent = new Intent(StatPiscineActivity.this, ResTotKMActivity.class);
+                intent = new Intent(StatPiscineActivity.this, ResStatPiscineActivity.class);
+                if (anneeeSw.isChecked()) {
+                    switchSelect = 1;
+                    dateDeb = ac.getDateDeb(laps, switchSelect);
+                    dateFin = ac.getDateFin(laps, switchSelect);
+                    intent.putExtra("switchSelect",switchSelect);
+                }
+                if (moisSw.isChecked()) {
+                    switchSelect = 2;
+                    dateDeb = ac.getDateDeb(laps, switchSelect);
+                    dateFin = ac.getDateFin(laps, switchSelect);
+                    intent.putExtra("switchSelect",switchSelect);
+                }
+                if(saisonSw.isChecked()) {
+                    switchSelect = 3;
+                    dateDeb = ac.getDateDeb(laps, switchSelect);
+                    dateFin = ac.getDateFin(laps, switchSelect);
+                    intent.putExtra("switchSelect",switchSelect);
+                }
                 intent.putExtra("dateDeb", dateFormat.format(dateDeb.getTime()));
-                intent.putExtra("dateDeb", dateFormat.format(dateFin.getTime()));
+                intent.putExtra("dateFin", dateFormat.format(dateFin.getTime()));
                 startActivity(intent);
             }
             else
@@ -141,22 +159,6 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
                 }
             }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
             dialog.show();
-
-            if (anneeeSw.isChecked()) {
-                switchSelect = 1;
-                dateDeb = ac.getDateDeb(laps, switchSelect);
-                dateFin = ac.getDateFin(laps, switchSelect);
-            }
-            if (moisSw.isChecked()) {
-                switchSelect = 2;
-                dateDeb = ac.getDateDeb(laps, switchSelect);
-                dateFin = ac.getDateFin(laps, switchSelect);
-            }
-            if(saisonSw.isChecked()) {
-                switchSelect = 3;
-                dateDeb = ac.getDateDeb(laps, switchSelect);
-                dateFin = ac.getDateFin(laps, switchSelect);
-            }
         }
     }
 
