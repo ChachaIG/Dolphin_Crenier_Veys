@@ -109,19 +109,13 @@ public class ApplicationBusiness {
             if (laps != null) {
 
                 if (laps.get(Calendar.MONTH) >= 8 && laps.get(Calendar.MONTH) <= 11) {
+                    laps.add(Calendar.YEAR,1);
                     dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
                 } else {
-                    laps.add(Calendar.YEAR, +1);
                     dateFin.set(Calendar.YEAR, laps.get(Calendar.YEAR));
                 }
                 dateFin.set(Calendar.MONTH, 5);
-                if (laps.get(Calendar.MONTH) % 2 != 0) {
-                    dateFin.set(Calendar.DAY_OF_MONTH, 30);
-                } else {
-                    dateFin.set(Calendar.DAY_OF_MONTH, 31);
-                }
-                if (laps.get(Calendar.MONTH) == 2)
-                    dateFin.set(Calendar.DAY_OF_MONTH, 28);
+                dateFin.set(Calendar.DAY_OF_MONTH, 30);
             }
         }
         return dateFin;
@@ -142,6 +136,37 @@ public class ApplicationBusiness {
                 break;
         }
         return cout;
+    }
+
+    public String getNomDuMois(Calendar date){
+        String nomMois ="";
+        switch (date.get(Calendar.MONTH)){
+            case 0: nomMois = "Janvier";
+                break;
+            case 1: nomMois = "Février";
+                break;
+            case 2: nomMois = "Mars";
+                break;
+        case 3: nomMois = "Avril";
+                break;
+            case 4: nomMois = "Mai";
+                break;
+            case 5: nomMois = "Juin";
+                break;
+            case 6: nomMois = "Juillet";
+                break;
+            case 7: nomMois = "Août";
+                break;
+            case 8: nomMois = "Septembre";
+                break;
+            case 9: nomMois = "Octobre";
+                break;
+            case 10: nomMois = "Novembre";
+                break;
+            case 11: nomMois = "Décembre";
+                break;
+        }
+        return nomMois;
     }
 
 }

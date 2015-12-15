@@ -40,4 +40,8 @@ public class ApplicationController {
         return business.getCoutMatch(m);
     }
 
+    public String getNomDuMois(Calendar date){
+        return business.getNomDuMois(date);
+    }
+
 }

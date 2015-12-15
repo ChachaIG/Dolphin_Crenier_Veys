@@ -46,4 +46,7 @@
     <string name="erreurMDP">Mot de passe incorrect</string>
     <string name="erreurCrypt">Erreur lors du traitement du mot de passe</string>
     <string name="sauvConnexion">Se souvenir de moi</string>
+    <string name="resTotKm1">En</string>
+    <string name="resTotKm3">Tu as parcourus</string>
+    <string name="resTotSal3">Tu as gagné </string>
 </resources>

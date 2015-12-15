@@ -115,16 +115,19 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
                     switchSelect = 1;
                     dateDeb = ac.getDateDeb(laps, switchSelect);
                     dateFin = ac.getDateFin(laps, switchSelect);
+                    intent.putExtra("switchSelect",switchSelect);
                 }
                 if (moisSw.isChecked()) {
                     switchSelect = 2;
                     dateDeb = ac.getDateDeb(laps, switchSelect);
                     dateFin = ac.getDateFin(laps, switchSelect);
+                    intent.putExtra("switchSelect",switchSelect);
                 }
                 if (saisonSw.isChecked()) {
                     switchSelect = 3;
                     dateDeb = ac.getDateDeb(laps, switchSelect);
                     dateFin = ac.getDateFin(laps, switchSelect);
+                    intent.putExtra("switchSelect",switchSelect);
                 }
                 intent.putExtra("dateDeb",dateFormat.format(dateDeb.getTime()));
                 intent.putExtra("dateFin", dateFormat.format(dateFin.getTime()));

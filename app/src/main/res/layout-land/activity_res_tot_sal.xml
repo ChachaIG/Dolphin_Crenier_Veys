@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/totSalLabel"
-        android:id="@+id/textLabelTotKM"
+        android:id="@+id/textLabelTotSal"
         android:background="#ff6e19"
         android:textColor="#ffffff"
         android:textSize="22dp"
@@ -19,16 +19,51 @@
         android:layout_height="match_parent"
         android:id="@+id/scrollViewAjout"
         android:layout_below="@+id/textLabelTotSal">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:weightSum="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/resTotSal1"
+                android:text="@string/resTotKm1"
+                android:textSize="26dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="45dp" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/resTotSal2"
+                android:textSize="22dp"
+                android:textColor="#ff6e19"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="45dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/resTotSal3"
+                android:text="@string/resTotSal3"
+                android:textSize="26dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="45dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/resTotSal4"
+                android:textSize="22dp"
+                android:textColor="#ff6e19"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="55dp" />
+
+        </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

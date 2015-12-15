@@ -43,4 +43,7 @@
     <string name="erreurMDP">wrong password</string>
     <string name="erreurCrypt">Error during password treatment </string>
     <string name="sauvConnexion">Remember me</string>
+    <string name="resTotKm1">During the</string>
+    <string name="resTotKm3">You have travel</string>
+    <string name="resTotSal3">Tu as gagné </string>
 </resources>
