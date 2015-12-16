@@ -109,9 +109,7 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
                     dateFormatDeb = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-
                     nouvDateDeb = Calendar.getInstance();
-
                     nouvDateDeb.set(year, monthOfYear, dayOfMonth);
 
                     if(nouvDateFin != null)

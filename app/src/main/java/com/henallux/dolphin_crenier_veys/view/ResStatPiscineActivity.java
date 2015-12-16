@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -45,17 +47,24 @@ public class ResStatPiscineActivity extends AppCompatActivity {
     private TableLayout tableau;
     private int lignes;
     private int col = 2;
-    private String dateDebStr;
-    private String dateFinStr;
-    private String date;
-    private String dateToParse;
-    private Calendar dateDeb = Calendar.getInstance();
-    private Calendar dateFin = Calendar.getInstance();
-    private Calendar dateMatch = Calendar.getInstance();
-    private SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
     private Utilisateur util;
+    //Date début pour intervalle
+    private Calendar dateMatch = Calendar.getInstance();
+    private Calendar dateDeb = Calendar.getInstance();
+    private Calendar dateDeb2 = Calendar.getInstance();
+    private String dateDebStr;
+    private String dateDebStr2;
+    //Date fin pour intervalle
+    private Calendar dateFin = Calendar.getInstance();
+    private String dateFinStr;
+    private String dateFinStr2;
+    private Calendar dateFin2 = Calendar.getInstance();
+    //Date format
+    SimpleDateFormat dateFormatddMMyyyy = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+    SimpleDateFormat dateFormatyyyyMMdd = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
     private ApplicationController ac;
     private int cptMatchParPiscine [] = new int[39];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +74,13 @@ public class ResStatPiscineActivity extends AppCompatActivity {
         dateDebStr = bundle.getString("dateDeb");
         dateFinStr = bundle.getString("dateFin");
         try {
-            dateDeb.setTime(dateFormat2.parse(dateDebStr));
-            dateFin.setTime(dateFormat2.parse(dateFinStr));
+            dateDeb.setTime(dateFormatddMMyyyy.parse(dateDebStr));
+            dateDebStr2 = dateFormatyyyyMMdd.format(dateDeb.getTime());
+            dateDeb2.setTime(dateFormatyyyyMMdd.parse(dateDebStr2));
+            dateFin.setTime(dateFormatddMMyyyy.parse(dateFinStr));
+            dateFinStr2 = dateFormatyyyyMMdd.format(dateFin.getTime());
+            dateFin2.setTime(dateFormatyyyyMMdd.parse(dateFinStr2));
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -81,7 +95,7 @@ public class ResStatPiscineActivity extends AppCompatActivity {
         initialisationCpt();
         tableau = (TableLayout)findViewById(R.id.idTablePiscine);
         getPiscines();
-        getMatchUtilisateur();
+
     }
 
     public void initialisationCpt(){
@@ -90,33 +104,40 @@ public class ResStatPiscineActivity extends AppCompatActivity {
         }
     }
 
-    public void getMatchUtilisateur() {
-        JsonArrayRequest getMatchUtil = new JsonArrayRequest(Request.Method.GET, "http://dolphinapp.azurewebsites.net/api/match?idUUtilisateur=" + util.getIdUtilisateur(), new Response.Listener<JSONArray>() {
+    public void getMatchUtilisateur( final TableRow row) {
+        final JsonArrayRequest getMatchUtil = new JsonArrayRequest(Request.Method.GET, "http://dolphinapp.azurewebsites.net/api/match?idUUtilisateur=" + util.getIdUtilisateur(), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 try {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject res = response.getJSONObject(i);
-                        date = res.getString("DATE_MATCH");
-                        dateToParse = date.substring(0, 10);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        Match m = new Match(res.getInt("ID_MATCH"),res.getString("DATE_MATCH"), res.getBoolean("SECOND_MATCH"), res.getInt("ID_UTILISATEUR"), res.getJSONObject("piscine").getInt("ID_PISCINE"), res.getJSONObject("division").getInt("ID_DIVISION"), res.getDouble("DISTANCE"), res.getDouble("COUT"));
+                        matchs.add(m);
+                    }
+                    for (Match m : matchs) {
                         try {
-                            dateMatch.setTime(dateFormat.parse(dateToParse));
+                            dateMatch.setTime(dateFormatyyyyMMdd.parse(m.getDateStr()));
+                            m.setDateMatch(dateMatch);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        Match m = new Match(res.getInt("ID_MATCH"), date, res.getBoolean("SECOND_MATCH"), res.getInt("ID_UTILISATEUR"), res.getJSONObject("piscine").getString("NOM_PISCINE"), res.getJSONObject("division").getString("LIBELLE_DIVISION"), res.getDouble("DISTANCE"), res.getDouble("COUT"));
-                        matchs.add(m);
-                        m.setDateMatch(dateMatch);
-                    }
-                    for (Match m : matchs) {
                         if (m.getDateMatch().after(dateDeb) && m.getDateMatch().before(dateFin))
                             matchsTri.add(m);
                     }
                     for (Match m : matchsTri){
-                            cptMatchParPiscine[m.getIdDivision()-1] += 1;
+                        int idPi = m.getIdPiscine();
+                        cptMatchParPiscine[idPi - 1] += 1;
                     }
-                    completerTableau(cptMatchParPiscine,tableau);
+                    for(int cpt=1; cpt<=39;cpt++) {
+                        TextView tv2 = new TextView(ResStatPiscineActivity.this);
+                        int id = cptMatchParPiscine[cpt-1];
+                        tv2.setText(""+id);
+                        row.removeView(tv2);
+                        row.addView(tv2);
+                    }
+
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -129,22 +150,6 @@ public class ResStatPiscineActivity extends AppCompatActivity {
             }
         });
         Singleton.getInstance(this).addToRequestQueue(getMatchUtil);
-    }
-
-    public void completerTableau(int[] tabCpt, TableLayout tableau){
-        for(int i=0;i<tableau.getChildCount();i++)
-        {
-            TableRow row = (TableRow)tableau.getChildAt(i);
-            for(int j=0;j<2;j++){
-                TextView tv = new TextView(this);
-                tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT));
-                tv.setPadding(5, 5, 5, 5);
-                if(j%2 != 0)
-                    tv.setText(""+tabCpt[i]);
-                row.addView(tv);
-            }
-        }
     }
 
     private void getPiscines() {
@@ -190,7 +195,12 @@ public class ResStatPiscineActivity extends AppCompatActivity {
                 tv.setPadding(5, 5, 5, 5);
                 if(j%2 != 0)
                     tv.setText(libellePiscine.get(i-1));
+                else{
+                    getMatchUtilisateur(row);
+
+                }
                 row.addView(tv);
+
             }
             tableau.addView(row);
         }

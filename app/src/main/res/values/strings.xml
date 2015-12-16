@@ -49,4 +49,8 @@
     <string name="resTotKm1">En</string>
     <string name="resTotKm3">Tu as parcourus</string>
     <string name="resTotSal3">Tu as gagné </string>
+    <string name="erreur">Erreur</string>
+    <string name="erreurChampsInvalide">Champs invalide</string>
+    <string name="suppression">Suppression match</string>
+    <string name="phraseSuppression">êtes-vous sûr de vouloir supprimer ce match ?</string>
 </resources>

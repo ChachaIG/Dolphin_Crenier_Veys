@@ -46,4 +46,8 @@
     <string name="resTotKm1">During the</string>
     <string name="resTotKm3">You have travel</string>
     <string name="resTotSal3">Tu as gagné </string>
+    <string name="erreur">Error</string>
+    <string name="erreurChampsInvalide">Invalid form</string>
+    <string name="suppression">Delete match</string>
+    <string name="phraseSuppression">Are you sure you want to delete this match ?</string>
 </resources>

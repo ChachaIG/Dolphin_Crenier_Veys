@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -37,21 +38,32 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ListRechActivity extends AppCompatActivity {
+    //Shared preferences
     private SharedPreferences preferences;
     private SharedPreferences.Editor editeur;
+    //Utilisateur
     private Utilisateur util;
     private double adrLat;
     private double adrLon;
+    //Liste de match
     private ArrayList<Match> matchs = new ArrayList<>();
     private ArrayList<String> matchsAffichage = new ArrayList<>();
-    private String date;
-    private String dateToParse;
+    //Date début pour intervalle
     private Calendar dateMatch = Calendar.getInstance();
-    private ListView listRech;
     private Calendar dateDeb = Calendar.getInstance();
+    private Calendar dateDeb2 = Calendar.getInstance();
     private String dateDebStr;
+    private String dateDebStr2;
+    //Date fin pour intervalle
     private Calendar dateFin = Calendar.getInstance();
     private String dateFinStr;
+    private String dateFinStr2;
+    private Calendar dateFin2 = Calendar.getInstance();
+    //Date format
+    SimpleDateFormat dateFormatddMMyyyy = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+    SimpleDateFormat dateFormatyyyyMMdd = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+    //Vue
+    private ListView listRech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +72,14 @@ public class ListRechActivity extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         dateDebStr = bundle.getString("dateDeb");
         dateFinStr = bundle.getString("dateFin");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         try {
-            dateDeb.setTime(dateFormat.parse(dateDebStr));
-            dateDeb.add(Calendar.DAY_OF_MONTH, -1);
-            dateFin.setTime(dateFormat.parse(dateFinStr));
-            dateFin.add(Calendar.DAY_OF_MONTH,+1);
+            dateDeb.setTime(dateFormatddMMyyyy.parse(dateDebStr));
+            dateDebStr2 = dateFormatyyyyMMdd.format(dateDeb.getTime());
+            dateDeb2.setTime(dateFormatyyyyMMdd.parse(dateDebStr2));
+            dateFin.setTime(dateFormatddMMyyyy.parse(dateFinStr));
+            dateFinStr2 = dateFormatyyyyMMdd.format(dateFin.getTime());
+            dateFin2.setTime(dateFormatyyyyMMdd.parse(dateFinStr2));
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -100,21 +114,19 @@ public class ListRechActivity extends AppCompatActivity {
                 try {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject res = response.getJSONObject(i);
-                        date = res.getString("DATE_MATCH");
-                        dateToParse = date.substring(0,10);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        Match m = new Match(res.getInt("ID_MATCH"),res.getString("DATE_MATCH").substring(0,10), res.getBoolean("SECOND_MATCH"),res.getInt("ID_UTILISATEUR"),res.getJSONObject("piscine").getString("NOM_PISCINE"),res.getJSONObject("division").getString("LIBELLE_DIVISION"),res.getDouble("DISTANCE"),res.getDouble("COUT"));
+                        matchs.add(m);
+                    }
+                    for (Match m : matchs) {
                         try {
-                            dateMatch.setTime(dateFormat.parse(dateToParse));
+                            dateMatch.setTime(dateFormatyyyyMMdd.parse(m.getDateStr()));
+                            m.setDateMatch(dateMatch);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        Match m = new Match(res.getInt("ID_MATCH"),res.getString("DATE_MATCH").substring(0,10), res.getBoolean("SECOND_MATCH"),res.getInt("ID_UTILISATEUR"),res.getJSONObject("piscine").getString("NOM_PISCINE"),res.getJSONObject("division").getString("LIBELLE_DIVISION"),res.getDouble("DISTANCE"),res.getDouble("COUT"));
-                        matchs.add(m);
-                        m.setDateMatch(dateMatch);
-                    }
-                    for (Match m : matchs) {
-                        if(m.getDateMatch().after(dateDeb) && m.getDateMatch().before(dateFin))
-                            matchsAffichage.add(m.getDateStr()+" / "+m.getLibelleDivision()+" / "+m.getNomPicine());
+                        if(m.getDateMatch().after(dateDeb2) && m.getDateMatch().before(dateFin2)) {
+                            matchsAffichage.add(m.getDateStr() + " / " + m.getLibelleDivision() + " / " + m.getNomPicine());
+                        }
                     }
                     ArrayAdapter<String> adaptaterRech = new ArrayAdapter<String>(ListRechActivity.this, android.R.layout.simple_spinner_item, matchsAffichage);
                     listRech.setAdapter(adaptaterRech);

@@ -38,22 +38,28 @@ public class ResTotKMActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editeur;
-    private Calendar dateDeb = Calendar.getInstance();
-    private Calendar dateFin = Calendar.getInstance();
-    private SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
-    private String date;
-    private String dateToParse;
-    private Calendar dateMatch = Calendar.getInstance();
     private ArrayList<Match> matchs = new ArrayList<>();
     private ArrayList<Match> matchsTri = new ArrayList<>();
     private TextView resTotKm2;
     private TextView resTotKm4;
     private Utilisateur util;
-    private String dateDebStr;
-    private String dateFinStr;
     private double distance = 0;
     private String distanceStr;
     private int switchSelect;
+    //Date début pour intervalle
+    private Calendar dateMatch = Calendar.getInstance();
+    private Calendar dateDeb = Calendar.getInstance();
+    private Calendar dateDeb2 = Calendar.getInstance();
+    private String dateDebStr;
+    private String dateDebStr2;
+    //Date fin pour intervalle
+    private Calendar dateFin = Calendar.getInstance();
+    private String dateFinStr;
+    private String dateFinStr2;
+    private Calendar dateFin2 = Calendar.getInstance();
+    //Date format
+    SimpleDateFormat dateFormatddMMyyyy = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+    SimpleDateFormat dateFormatyyyyMMdd = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
     private ApplicationController ac;
 
     @Override
@@ -65,8 +71,13 @@ public class ResTotKMActivity extends AppCompatActivity {
         dateDebStr = bundle.getString("dateDeb");
         dateFinStr = bundle.getString("dateFin");
         try {
-            dateDeb.setTime(dateFormat2.parse(dateDebStr));
-            dateFin.setTime(dateFormat2.parse(dateFinStr));
+            dateDeb.setTime(dateFormatddMMyyyy.parse(dateDebStr));
+            dateDebStr2 = dateFormatyyyyMMdd.format(dateDeb.getTime());
+            dateDeb2.setTime(dateFormatyyyyMMdd.parse(dateDebStr2));
+            dateFin.setTime(dateFormatddMMyyyy.parse(dateFinStr));
+            dateFinStr2 = dateFormatyyyyMMdd.format(dateFin.getTime());
+            dateFin2.setTime(dateFormatyyyyMMdd.parse(dateFinStr2));
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -98,19 +109,16 @@ public class ResTotKMActivity extends AppCompatActivity {
                 try {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject res = response.getJSONObject(i);
-                        date = res.getString("DATE_MATCH");
-                        dateToParse = date.substring(0, 10);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        Match m = new Match(res.getInt("ID_MATCH"), res.getString("DATE_MATCH"), res.getBoolean("SECOND_MATCH"), res.getInt("ID_UTILISATEUR"), res.getJSONObject("piscine").getString("NOM_PISCINE"), res.getJSONObject("division").getString("LIBELLE_DIVISION"), res.getDouble("DISTANCE"), res.getDouble("COUT"));
+                        matchs.add(m);
+                    }
+                    for (Match m : matchs) {
                         try {
-                            dateMatch.setTime(dateFormat.parse(dateToParse));
+                            dateMatch.setTime(dateFormatyyyyMMdd.parse(m.getDateStr()));
+                            m.setDateMatch(dateMatch);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        Match m = new Match(res.getInt("ID_MATCH"), date, res.getBoolean("SECOND_MATCH"), res.getInt("ID_UTILISATEUR"), res.getJSONObject("piscine").getString("NOM_PISCINE"), res.getJSONObject("division").getString("LIBELLE_DIVISION"), res.getDouble("DISTANCE"), res.getDouble("COUT"));
-                        matchs.add(m);
-                        m.setDateMatch(dateMatch);
-                    }
-                    for (Match m : matchs) {
                         if (m.getDateMatch().after(dateDeb) && m.getDateMatch().before(dateFin))
                             matchsTri.add(m);
                     }
@@ -119,7 +127,8 @@ public class ResTotKMActivity extends AppCompatActivity {
                         distance += m.getDistance();
                     }
                     distanceStr =""+distance;
-                    resTotKm4.setText(""+distanceStr.substring(0,5)+" KM");
+                    if(distanceStr.length()>5)
+                        resTotKm4.setText(""+distanceStr.substring(0,5)+" KM");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
