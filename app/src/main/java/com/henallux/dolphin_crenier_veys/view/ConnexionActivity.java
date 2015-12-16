@@ -79,7 +79,7 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
         log = login.getText().toString();
         upperLog = log.toUpperCase();
 
-        JsonObjectRequest getDiv = new JsonObjectRequest(Request.Method.GET, "http://dolphinapp.azurewebsites.net/api/utilisateur?login=" + upperLog, new Response.Listener<JSONObject>() {
+        JsonObjectRequest getDiv = new JsonObjectRequest(Request.Method.GET, "http://dolphinapp.azurewebsites.net/api/utilisateur?login="+upperLog, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -100,25 +100,18 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                         editeur.commit();
                     }
                     motDePasseStr = motDePasse.getText().toString();
-                    ////////////////////////////////////////////////////////
-                    ////A DECOMMENTER POUR PRENDRE EN CHARGE LE CRYPTAGE////
-                    ////////////////////////////////////////////////////////
-                            /*try {
-                                mdpCrypt = ac.cryptageMDP(motDePasseStr, ConnexionActivity.this);
-                            }catch(NoSuchAlgorithmException e){
-                                e.printStackTrace();
-                            }
-                            catch(CryptageMotDePasseException e){
-                                Toast.makeText(ConnexionActivity.this, e.msgException(),Toast.LENGTH_SHORT).show();
-                            }*/
-                    ////////////////////////////////////////////////////////
-                    ////////////////////////////////////////////////////////
-                    //!\ UNE FOIS CRYPTAGE FONCTIONNEL REMPLACER motDePasseStr PAR mdpCrypt/!\\
-                    ///////////////////////////////////////////////////////////////
-                    if (motDePasseStr.equals(util.getMotDepasse()) == false) {
+
+                    try {
+                        mdpCrypt = ac.cryptageMDP(motDePasseStr, ConnexionActivity.this);
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    } catch (CryptageMotDePasseException e) {
+                        Toast.makeText(ConnexionActivity.this, e.msgException(), Toast.LENGTH_SHORT).show();
+                    }
+                    if (mdpCrypt.equals(util.getMotDepasse()) == false) {
                         Toast.makeText(ConnexionActivity.this, R.string.erreurMDP, Toast.LENGTH_SHORT).show();
                     }
-                    if (motDePasseStr.equals(util.getMotDepasse())) {
+                    else{
                         Intent intent = new Intent(ConnexionActivity.this, MenuActivity.class);
                         editeur.putInt("IdUtil", util.getIdUtilisateur());
                         editeur.putString("prenomUtil", util.getPrenom());
