@@ -122,23 +122,21 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
             case R.id.recupDate:
                 setDateMatchAjout();
                 break;
-            case R.id.ajoutMatchBouton:
+           case R.id.ajoutMatchBouton:
                 try {
-                    if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                    if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this) && testRec) {
                         estUnSecondMatch = secondMatch.isChecked();
-                        if(testRec) {
-                            Integer idLieu = recupLieu.getSelectedItemPosition();
-                            selectPiscine = dataLieu.get(idLieu);
-                            Integer idDiv = recupDiv.getSelectedItemPosition();
-                            selectDivision = dataDiv.get(idDiv);
-                        }
+                        Integer idLieu = recupLieu.getSelectedItemPosition();
+                        selectPiscine = dataLieu.get(idLieu);
+                        Integer idDiv = recupDiv.getSelectedItemPosition();
+                        selectDivision = dataDiv.get(idDiv);
                         intent = new Intent(AjoutActivity.this, ResAjoutActivity.class);
                         intent.putExtra("NomPiscine", selectPiscine.getNom());
                         intent.putExtra("IdLieu", selectPiscine.getId());
                         intent.putExtra("NomPiscine", selectPiscine.getNom());
                         intent.putExtra("AdrLat", selectPiscine.getAdrLatitude());
                         intent.putExtra("AdrLon", selectPiscine.getAdrLongitutde());
-                        if (nouvDate != null && testRec) {
+                        if (nouvDate != null) {
                             m = new Match();
                             getDistance(selectPiscine);
                         } else {
@@ -186,6 +184,9 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                     ajouterMatch(m);
                     if(m.getIdDivision() != null && m.getIdPiscine()!= null)
                         startActivity(intent);
+                    else{
+                        testRec = false;
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -313,11 +314,13 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                         JSONObject res = response.getJSONObject(i);
                         Division di = new Division(res.getInt("ID_DIVISION"), res.getString("NOM_DIVISION"), res.getString("LIBELLE_DIVISION"));
                         dataDiv.add(di);
-
+                        if(dataDiv.isEmpty())
+                            testRec = false;
 
                     }
                     for (Division d : dataDiv) {
                         libelleDivision.add(d.getNomDivision());
+
                     }
                     recupDiv = (Spinner) findViewById(R.id.recupCat);
                     ArrayAdapter<String> adaptaterCat = new ArrayAdapter<String>(AjoutActivity.this, android.R.layout.simple_spinner_item, libelleDivision);
@@ -332,8 +335,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Division di = new Division(0, "error", "error");
-                dataDiv.add(di);
                 testRec = false;
+                dataDiv.add(di);
                 progD.hide();
             }
         });
@@ -352,6 +355,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                         JSONObject res = response.getJSONObject(i);
                         Piscine pi = new Piscine(res.getInt("ID_PISCINE"), res.getString("NOM_PISCINE"), res.getDouble("ADR_LATITUDE"), res.getDouble("ADR_LONGITUDE"));
                         dataLieu.add(pi);
+                        if(dataLieu.isEmpty())
+                            testRec = false;
 
                     }
                     for (Piscine p : dataLieu) {

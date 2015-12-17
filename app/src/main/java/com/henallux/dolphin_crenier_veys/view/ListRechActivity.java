@@ -130,6 +130,8 @@ public class ListRechActivity extends AppCompatActivity {
                     }
                     ArrayAdapter<String> adaptaterRech = new ArrayAdapter<String>(ListRechActivity.this, android.R.layout.simple_spinner_item, matchsAffichage);
                     listRech.setAdapter(adaptaterRech);
+                    if(matchsAffichage.isEmpty())
+                        Toast.makeText(ListRechActivity.this,R.string.pasMatch,Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

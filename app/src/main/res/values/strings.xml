@@ -4,7 +4,7 @@
     <string name="connexion">Connexion</string>
     <string name="bienvenueMess">Bienvenue</string>
     <string name="parametres">Paramètres</string>
-    <string name="login">Nom utilisteur</string>
+    <string name="login">Nom utilisateur</string>
     <string name="motDePasse">Mot de passe</string>
     <string name="gestionMatch">Gestion match</string>
     <string name="recherche">Recherche</string>
@@ -37,8 +37,8 @@
     <string name="totSalLabel">Totaux : Salaire</string>
     <string name="totBout">Total</string>
     <string name="verifDateAjout">Date invalide</string>
-    <string name="title_AlertDialogInternet">Pas de connexion internet</string>
-    <string name="msg_AlertDialogInternet">veuillez vour connecter a internet ou réessayez plus tard</string>
+    <string name="title_AlertDialogInternet">Pas de connexion Internet</string>
+    <string name="msg_AlertDialogInternet">Veuillez vous connecter à Internet ou réessayez plus tard</string>
     <string name="deconnexion">Déconnexion</string>
     <string name="nbMatch">Nb Match</string>
     <string name="erreurJSON">Erreur JSON</string>
@@ -52,6 +52,7 @@
     <string name="erreur">Erreur</string>
     <string name="erreurChampsInvalide">Champs invalide</string>
     <string name="suppression">Suppression match</string>
-    <string name="phraseSuppression">êtes-vous sûr de vouloir supprimer ce match ?</string>
+    <string name="phraseSuppression">Etes-vous sûr de vouloir supprimer ce match ?</string>
     <string name="att">Veuillez patienter</string>
+    <string name="pasMatch">Pas de match</string>
 </resources>
