@@ -36,7 +36,9 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ResStatDivisionActivity extends AppCompatActivity {
-
+    ///////////////////////////////////////////////////
+    /////////////////non terminé///////////////////////
+    ///////////////////////////////////////////////////
     private SharedPreferences preferences;
     private SharedPreferences.Editor editeur;
     private ArrayList<Division> dataDiv = new ArrayList<>();
@@ -163,7 +165,8 @@ public class ResStatDivisionActivity extends AppCompatActivity {
 
         Singleton.getInstance(this).addToRequestQueue(getDiv);
     }
-    private void constructionTableu(int ligne, int colonne){
+
+    private void constructionTableu(int ligne, int colonne) {
 
         for (int i = 1; i <= ligne; i++) {
 
@@ -179,8 +182,8 @@ public class ResStatDivisionActivity extends AppCompatActivity {
                         LayoutParams.WRAP_CONTENT));
 
                 tv.setPadding(5, 5, 5, 5);
-                if(j%2 != 0)
-                    tv.setText(libelleDivision.get(i-1));
+                if (j % 2 != 0)
+                    tv.setText(libelleDivision.get(i - 1));
 
                 row.addView(tv);
 
@@ -218,7 +221,7 @@ public class ResStatDivisionActivity extends AppCompatActivity {
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(ResStatDivisionActivity.this)) {
                         startActivity(new Intent(ResStatDivisionActivity.this, StatDivisionActivity.class));
@@ -235,7 +238,7 @@ public class ResStatDivisionActivity extends AppCompatActivity {
                     }
                 }catch (ConnexionException ex){
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(ResStatDivisionActivity.this)) {

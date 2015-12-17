@@ -191,7 +191,7 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {
                         startActivity(new Intent(TotSalActivity.this, StatDivisionActivity.class));
@@ -208,7 +208,7 @@ public class TotSalActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 }catch (ConnexionException ex){
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(TotSalActivity.this)) {

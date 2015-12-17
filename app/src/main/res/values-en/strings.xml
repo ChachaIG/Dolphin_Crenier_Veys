@@ -50,4 +50,5 @@
     <string name="erreurChampsInvalide">Invalid form</string>
     <string name="suppression">Delete match</string>
     <string name="phraseSuppression">Are you sure you want to delete this match ?</string>
+    <string name="att">Please wait</string>
 </resources>

@@ -187,7 +187,7 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(TotKMActivity.this)) {
                         startActivity(new Intent(TotKMActivity.this, StatDivisionActivity.class));
@@ -204,7 +204,7 @@ public class TotKMActivity extends AppCompatActivity implements View.OnClickList
                     }
                 }catch (ConnexionException ex){
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(TotKMActivity.this)) {

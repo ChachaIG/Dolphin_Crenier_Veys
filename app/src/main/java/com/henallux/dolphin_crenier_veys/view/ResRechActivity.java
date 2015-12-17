@@ -73,7 +73,7 @@ public class ResRechActivity extends AppCompatActivity {
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(ResRechActivity.this)) {
                         startActivity(new Intent(ResRechActivity.this, StatDivisionActivity.class));
@@ -90,7 +90,7 @@ public class ResRechActivity extends AppCompatActivity {
                     }
                 }catch (ConnexionException ex){
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(ResRechActivity.this)) {

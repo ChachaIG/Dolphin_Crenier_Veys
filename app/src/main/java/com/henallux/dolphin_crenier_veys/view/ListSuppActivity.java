@@ -159,7 +159,7 @@ public class ListSuppActivity extends AppCompatActivity {
                 } catch (ConnexionException ex) {
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+           /* case R.id.ic_statDiv:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {
                         startActivity(new Intent(ListSuppActivity.this, StatDivisionActivity.class));
@@ -176,7 +176,7 @@ public class ListSuppActivity extends AppCompatActivity {
                     }
                 } catch (ConnexionException ex) {
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(ListSuppActivity.this)) {

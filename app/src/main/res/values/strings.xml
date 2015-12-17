@@ -53,4 +53,5 @@
     <string name="erreurChampsInvalide">Champs invalide</string>
     <string name="suppression">Suppression match</string>
     <string name="phraseSuppression">êtes-vous sûr de vouloir supprimer ce match ?</string>
+    <string name="att">Veuillez patienter</string>
 </resources>

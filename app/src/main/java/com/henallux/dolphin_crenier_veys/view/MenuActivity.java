@@ -46,7 +46,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     public void init() {
 
-        Toast.makeText(MenuActivity.this, getString(R.string.bienvenueMess) + " " + preferences.getString("prenomUtil",""), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MenuActivity.this, getString(R.string.bienvenueMess) + " " + preferences.getString("prenomUtil",""), Toast.LENGTH_SHORT).show();
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
         prepareListData();
         listAdaptateur = new ExpandableListAdapter(this, listDataHeader, listDataChild);
@@ -157,7 +157,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         listDataHeader.add(getString(R.string.gestionMatch));
         listDataHeader.add(getString(R.string.recherche));
         listDataHeader.add(getString(R.string.tot));
-        listDataHeader.add(getString(R.string.stat));
+       // listDataHeader.add(getString(R.string.stat));
 
         List<String> subGestionMatch = new ArrayList<String>();
         subGestionMatch.add(getString(R.string.ajoutMatch));
@@ -167,14 +167,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         subTot.add(getString(R.string.km));
         subTot.add(getString(R.string.salaire));
 
-        List<String> subStat = new ArrayList<String>();
+        /*List<String> subStat = new ArrayList<String>();
         subStat.add(getString(R.string.piscine));
-        subStat.add(getString(R.string.division));
+        subStat.add(getString(R.string.division));*/
 
         listDataChild.put(listDataHeader.get(0), subGestionMatch);
         listDataChild.put(listDataHeader.get(1), new ArrayList<String>());
         listDataChild.put(listDataHeader.get(2), subTot);
-        listDataChild.put(listDataHeader.get(3), subStat);
+       // listDataChild.put(listDataHeader.get(3), subStat);
     }
 
     @Override
@@ -205,7 +205,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (ConnexionException ex) {
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {
                         startActivity(new Intent(MenuActivity.this, StatDivisionActivity.class));
@@ -222,7 +222,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 } catch (ConnexionException ex) {
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(MenuActivity.this)) {

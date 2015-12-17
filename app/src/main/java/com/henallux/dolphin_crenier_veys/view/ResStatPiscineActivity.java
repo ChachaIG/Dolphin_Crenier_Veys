@@ -37,7 +37,9 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ResStatPiscineActivity extends AppCompatActivity {
-
+    ///////////////////////////////////////////////////
+    /////////////////non terminé///////////////////////
+    ///////////////////////////////////////////////////
     private SharedPreferences preferences;
     private SharedPreferences.Editor editeur;
     private ArrayList<Piscine> dataPi = new ArrayList<>();
@@ -233,7 +235,7 @@ public class ResStatPiscineActivity extends AppCompatActivity {
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+           /* case R.id.ic_statDiv:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(ResStatPiscineActivity.this)) {
                         startActivity(new Intent(ResStatPiscineActivity.this, StatDivisionActivity.class));
@@ -250,7 +252,7 @@ public class ResStatPiscineActivity extends AppCompatActivity {
                     }
                 }catch (ConnexionException ex){
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(ResStatPiscineActivity.this)) {

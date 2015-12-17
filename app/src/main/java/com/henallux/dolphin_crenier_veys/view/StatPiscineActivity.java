@@ -26,7 +26,9 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class StatPiscineActivity extends AppCompatActivity implements View.OnClickListener{
-
+    ///////////////////////////////////////////////////
+    /////////////////non terminé///////////////////////
+    ///////////////////////////////////////////////////
     private Switch anneeeSw;
     private Switch moisSw;
     private Switch saisonSw;
@@ -190,7 +192,7 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(StatPiscineActivity.this)) {
                         startActivity(new Intent(StatPiscineActivity.this, StatDivisionActivity.class));
@@ -207,7 +209,7 @@ public class StatPiscineActivity extends AppCompatActivity implements View.OnCli
                     }
                 }catch (ConnexionException ex){
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(StatPiscineActivity.this)) {

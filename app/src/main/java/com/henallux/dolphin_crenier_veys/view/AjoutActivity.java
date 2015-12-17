@@ -2,6 +2,7 @@ package com.henallux.dolphin_crenier_veys.view;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -76,6 +77,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
     private Piscine selectPiscine;
     private SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
     private String dateMAjoutStr;
+    private ProgressDialog progD;
+    private boolean testRec = true;
 
 
     @Override
@@ -84,6 +87,9 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_ajout);
         preferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
         editeur = preferences.edit();
+        progD = new ProgressDialog(AjoutActivity.this);
+        progD.setMessage(getString(R.string.att));
+
         init();
     }
 
@@ -94,7 +100,9 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
         ApplicationController ac = new ApplicationController();
         try {
             if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
+                progD.show();
                 getDivisions();
+                progD.show();
                 getPiscines();
             }
         } catch (ConnexionException ex) {
@@ -118,17 +126,19 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
                         estUnSecondMatch = secondMatch.isChecked();
-                        Integer idLieu = recupLieu.getSelectedItemPosition();
-                        selectPiscine = dataLieu.get(idLieu);
-                        Integer idDiv = recupDiv.getSelectedItemPosition();
-                        selectDivision = dataDiv.get(idDiv);
+                        if(testRec) {
+                            Integer idLieu = recupLieu.getSelectedItemPosition();
+                            selectPiscine = dataLieu.get(idLieu);
+                            Integer idDiv = recupDiv.getSelectedItemPosition();
+                            selectDivision = dataDiv.get(idDiv);
+                        }
                         intent = new Intent(AjoutActivity.this, ResAjoutActivity.class);
                         intent.putExtra("NomPiscine", selectPiscine.getNom());
                         intent.putExtra("IdLieu", selectPiscine.getId());
                         intent.putExtra("NomPiscine", selectPiscine.getNom());
                         intent.putExtra("AdrLat", selectPiscine.getAdrLatitude());
                         intent.putExtra("AdrLon", selectPiscine.getAdrLongitutde());
-                        if (nouvDate != null || selectDivision != null || selectPiscine != null) {
+                        if (nouvDate != null && testRec) {
                             m = new Match();
                             getDistance(selectPiscine);
                         } else {
@@ -174,7 +184,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                     intent.putExtra("distance", m.getDistance());
                     intent.putExtra("cout",m.getCout());
                     ajouterMatch(m);
-                    startActivity(intent);startActivity(intent);
+                    if(m.getIdDivision() != null && m.getIdPiscine()!= null)
+                        startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -237,7 +248,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                 } catch (ConnexionException ex) {
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+           /* case R.id.ic_statDiv:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
                         startActivity(new Intent(AjoutActivity.this, StatDivisionActivity.class));
@@ -254,7 +265,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                     }
                 } catch (ConnexionException ex) {
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(AjoutActivity.this)) {
@@ -311,6 +322,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                     recupDiv = (Spinner) findViewById(R.id.recupCat);
                     ArrayAdapter<String> adaptaterCat = new ArrayAdapter<String>(AjoutActivity.this, android.R.layout.simple_spinner_item, libelleDivision);
                     recupDiv.setAdapter(adaptaterCat);
+                    progD.hide();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -321,6 +333,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
             public void onErrorResponse(VolleyError volleyError) {
                 Division di = new Division(0, "error", "error");
                 dataDiv.add(di);
+                testRec = false;
+                progD.hide();
             }
         });
 
@@ -346,6 +360,7 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
                     recupLieu = (Spinner) findViewById(R.id.recupLieu);
                     ArrayAdapter<String> adaptaterCat = new ArrayAdapter<String>(AjoutActivity.this, android.R.layout.simple_spinner_item, libelleLieu);
                     recupLieu.setAdapter(adaptaterCat);
+                    progD.hide();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -356,7 +371,8 @@ public class AjoutActivity extends AppCompatActivity implements View.OnClickList
             public void onErrorResponse(VolleyError volleyError) {
                 Piscine pi = new Piscine(0, "error", 0, 0);
                 dataLieu.add(pi);
-
+                testRec = false;
+                progD.hide();
             }
         });
 

@@ -100,7 +100,6 @@ public class ConnexionActivity extends AppCompatActivity implements View.OnClick
                         editeur.commit();
                     }
                     motDePasseStr = motDePasse.getText().toString();
-
                     try {
                         mdpCrypt = ac.cryptageMDP(motDePasseStr, ConnexionActivity.this);
                     } catch (NoSuchAlgorithmException e) {

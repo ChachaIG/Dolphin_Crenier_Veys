@@ -154,7 +154,7 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (ConnexionException ex) {
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {
                         startActivity(new Intent(RechActivity.this, StatDivisionActivity.class));
@@ -171,7 +171,7 @@ public class RechActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 } catch (ConnexionException ex) {
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(RechActivity.this)) {

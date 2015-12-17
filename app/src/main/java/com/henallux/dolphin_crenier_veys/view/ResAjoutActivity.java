@@ -50,8 +50,6 @@ public class ResAjoutActivity extends AppCompatActivity {
         cout=(TextView)findViewById(R.id.resAjout6);
         coutAffichage = ""+bundle.getDouble("cout");
         cout.setText(coutAffichage.substring(0, 5) + " euros");
-
-
     }
 
     @Override
@@ -81,7 +79,7 @@ public class ResAjoutActivity extends AppCompatActivity {
                 } catch (ConnexionException ex) {
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {
                         startActivity(new Intent(ResAjoutActivity.this, StatDivisionActivity.class));
@@ -98,7 +96,7 @@ public class ResAjoutActivity extends AppCompatActivity {
                     }
                 } catch (ConnexionException ex) {
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if (VerificationConnexionInternet.estConnecteAInternet(ResAjoutActivity.this)) {

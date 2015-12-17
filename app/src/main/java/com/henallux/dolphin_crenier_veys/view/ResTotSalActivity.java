@@ -166,7 +166,7 @@ public class ResTotSalActivity extends AppCompatActivity {
                 }catch (ConnexionException ex){
                     ex.msgException();
                 }
-            case R.id.ic_statDiv:
+            /*case R.id.ic_statDiv:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
                         startActivity(new Intent(ResTotSalActivity.this, StatDivisionActivity.class));
@@ -183,7 +183,7 @@ public class ResTotSalActivity extends AppCompatActivity {
                     }
                 }catch (ConnexionException ex){
                     ex.msgException();
-                }
+                }*/
             case R.id.ic_supp:
                 try {
                     if(VerificationConnexionInternet.estConnecteAInternet(ResTotSalActivity.this)) {
